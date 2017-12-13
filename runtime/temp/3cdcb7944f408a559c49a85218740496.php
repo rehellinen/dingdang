@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:75:"C:\wamp\www\dingdang\public/../application/admin\view\attendance\index.html";i:1511517332;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:75:"C:\wamp\www\dingdang\public/../application/admin\view\attendance\index.html";i:1513182086;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -80,7 +80,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php if(is_array($attendance) || $attendance instanceof \think\Collection || $attendance instanceof \think\Paginator): $i = 0; $__LIST__ = $attendance;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <?php if(is_array($attendanceArray) || $attendanceArray instanceof \think\Collection || $attendanceArray instanceof \think\Paginator): $i = 0; $__LIST__ = $attendanceArray;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tr>
                         <td><?php echo $vo['id']; ?></td>
                         <td><?php echo $vo['user_id']['name']; ?></td>

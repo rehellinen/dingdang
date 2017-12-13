@@ -22,7 +22,7 @@ class BaseModel extends Model
     public function getNotDelete()
     {
         $condition['status'] = array('neq', -1);
-        return $this->where($condition)->order('id desc')->paginate(15);
+        return $this->where($condition)->order('id desc')->paginate(10);
     }
 
     public function getById($id)

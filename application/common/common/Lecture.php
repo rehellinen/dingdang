@@ -56,4 +56,11 @@ class Lecture extends BaseModel
         ];
         return $this->where($condition)->order('time desc, id desc')->select();
     }
+
+    public function getById($id)
+    {
+        $condition['status'] = array('neq', -1);
+        $condition['id'] = $id;
+        return $this->where($condition)->with('placeId')->find()->toArray();
+    }
 }

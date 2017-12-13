@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:69:"C:\wamp\www\dingdang\public/../application/admin\view\user\index.html";i:1510381507;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:69:"C:\wamp\www\dingdang\public/../application/admin\view\user\index.html";i:1513182221;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -94,6 +94,9 @@
                 <?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
             </table>
+        </div>
+        <div class="container">
+            <?php echo $users->render(); ?>
         </div>
     </div>
 </div>

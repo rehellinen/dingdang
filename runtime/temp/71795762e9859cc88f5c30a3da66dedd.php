@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:71:"C:\wamp\www\dingdang\public/../application/admin\view\lecture\edit.html";i:1511173517;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:71:"C:\wamp\www\dingdang\public/../application/admin\view\lecture\edit.html";i:1513181611;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -89,7 +89,11 @@
                 <div class="form-group">
                     <label for="place_id" class="col-sm-2 control-label">地点:</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="place_id" id="place_id" value="<?php echo $res['place_id']; ?>">
+                        <select name="place_id" class="form-control">
+                            <?php if(is_array($place) || $place instanceof \think\Collection || $place instanceof \think\Paginator): $i = 0; $__LIST__ = $place;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                            <option  value="<?php echo $vo['id']; ?>" <?php if($vo['id']==$res['place_id']['id']): ?>selected<?php endif; ?>><?php echo $vo['name']; ?></option>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                        </select>
                     </div>
                 </div>
 

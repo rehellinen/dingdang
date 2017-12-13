@@ -14,10 +14,12 @@ class Attendance extends BaseController
 {
     public function index()
     {
-        $attendance = Loader::model('Attendance')->getNotDelete()->toArray();
+        $attendance = Loader::model('Attendance')->getNotDelete();
+        $attendanceArray = Loader::model('Attendance')->getNotDelete()->toArray();
 
         return $this->fetch('', [
-            'attendance' => $attendance['data']
+            'attendance' => $attendance,
+            'attendanceArray' => $attendanceArray['data']
         ]);
     }
 

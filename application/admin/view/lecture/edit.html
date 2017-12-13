@@ -30,7 +30,11 @@
                 <div class="form-group">
                     <label for="place_id" class="col-sm-2 control-label">地点:</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="place_id" id="place_id" value="{$res.place_id}">
+                        <select name="place_id" class="form-control">
+                            {volist name="place" id="vo"}
+                            <option  value="{$vo.id}" {if condition="$vo.id==$res.place_id.id"}selected{/if}>{$vo.name}</option>
+                            {/volist}
+                        </select>
                     </div>
                 </div>
 

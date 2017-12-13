@@ -49,6 +49,15 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
         'fragment' => '',
     ];
 
+    private function setPath()
+    {
+        $module = Request::instance()->module();
+        $controller = Request::instance()->controller();
+        $action = Request::instance()->action();
+
+        $this->options['path'] = '/'.$module.$controller.$action;
+    }
+
     /** @var mixed simple模式下的下个元素 */
     protected $nextItem;
 
@@ -57,7 +66,11 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
         $this->options = array_merge($this->options, $options);
 
         $this->options['path'] = '/' != $this->options['path'] ? rtrim($this->options['path'], '/') : $this->options['path'];
+        $module = Request::instance()->module();
+        $controller = Request::instance()->controller();
+        $action = Request::instance()->action();
 
+        $this->options['path'] .= '/' . $module. '/' .$controller. '/' .$action;
         $this->simple   = $simple;
         $this->listRows = $listRows;
 
@@ -130,6 +143,7 @@ abstract class Paginator implements ArrayAccess, Countable, IteratorAggregate, J
         if (!empty($parameters)) {
             $url .= '?' . urldecode(http_build_query($parameters, null, '&'));
         }
+        
         return $url . $this->buildFragment();
     }
 
