@@ -1,0 +1,93 @@
+{include file="public/header"}
+<body>
+{include file="public/nav"}
+<!-- MENU SECTION END-->
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="page-head-line">编辑讲座</h4>
+            </div>
+        </div>
+
+        <div class="container">
+            <form id="submitForm" method="post" enctype="multipart/form-data" class="form-signin form-horizontal">
+                <input type="hidden" name="id" value="{$res.id}">
+                <div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">标题:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="title" id="title" value="{$res.title}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="time" class="col-sm-2 control-label">时间:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="time" id="time" value="{$res.time}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="place_id" class="col-sm-2 control-label">地点:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="place_id" id="place_id" value="{$res.place_id}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">标题图:</label>
+                    <div class="col-sm-10">
+                        <input id="file_upload"  type="file" multiple="true" >
+                        <img style="" id="upload_org_code_img" src="{$res.photo_url}" width="150" height="150">
+                        <input id="file_upload_image" name="photo_url" type="hidden" multiple="true" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">类型:</label>
+                    <div class="col-sm-5">
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="status" id="1" value="1" {if condition="$res.status==1"}checked{/if}>
+                                讲座
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="status" id="2" value="2" {if condition="$res.status==2"}checked{/if}>
+                                活动
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="detail" class="col-sm-2 control-label">详情:</label>
+                    <div class="col-sm-5">
+                        <textarea name="detail" class="form-control" id="detail" rows="5">{$res.detail}</textarea>
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button id="submitButton" class="btn btn-primary" type="button">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var URL = {
+        'submit_url' : '__URL__admin/lecture/edit',
+        'success_url' : '__URL__admin/lecture/index',
+        'image_url' : '__URL__admin/image/upload',
+        'swf_url' : '__STATIC__/uploadify/uploadify.swf'
+    };
+</script>
+<script src="__STATIC__/admin/js/image.js"></script>
+
+
+{include file="public/footer"}

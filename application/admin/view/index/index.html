@@ -1,0 +1,48 @@
+﻿{include file="public/header"}
+<body>
+{include file="public/nav"}
+    <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line">首页</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-one">
+                        <i  class="fa fa-user dashboard-div-icon" ></i>
+                        <p>{$userCount}</p>
+                        <h5>用户数量</h5>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-two">
+                        <i  class="fa fa-edit dashboard-div-icon" ></i>
+                        <p>{$lectureCount}</p>
+                        <h5>讲座数量</h5>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-three">
+                        <i  class="fa fa-cogs dashboard-div-icon" ></i>
+                        <p>{$placeCount}</p>
+                        <h5>地点数量</h5>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <div class="dashboard-div-wrapper bk-clr-four">
+                        <i  class="fa fa-bell-o dashboard-div-icon" ></i>
+                        <p>{$enrollCount}</p>
+                        <h5>报名数量</h5>
+                    </div>
+                </div>
+
+            </div>
+           
+
+        </div>
+    </div>
+{include file="public/footer"}

@@ -1,0 +1,48 @@
+{include file="public/header"}
+<body>
+{include file="public/nav"}
+<!-- MENU SECTION END-->
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="page-head-line">编辑地点</h4>
+            </div>
+        </div>
+
+        <div class="container">
+            <form id="submitForm" method="post" enctype="multipart/form-data" class="form-signin form-horizontal">
+                <input type="hidden" name="id" value="{$res.id}">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">地点:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="name" id="name" value="{$res.name}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="max" class="col-sm-2 control-label">最大容量:</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="max" id="max" value="{$res.max}">
+                    </div>
+                </div>
+
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <button id="submitButton" class="btn btn-primary" type="button">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var URL = {
+        'submit_url' : '__URL__admin/place/edit',
+        'success_url' : '__URL__admin/place/index'
+    };
+</script>
+
+{include file="public/footer"}
