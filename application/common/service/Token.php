@@ -48,7 +48,7 @@ class Token
         $result = cache($key, $value, $time);
         if(!$result) {
             throw new TokenException([
-                'errorCode' => 10005,
+                'status' => 10005,
                 'msg' => '服务器缓存写入失败'
             ]);
         }

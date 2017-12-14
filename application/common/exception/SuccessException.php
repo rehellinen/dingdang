@@ -18,5 +18,5 @@ class SuccessException extends BaseException
     public $msg = '成功';
 
     //自定义的错误码
-    public $errorCode = 90000;
+    public $status = 90000;
 }

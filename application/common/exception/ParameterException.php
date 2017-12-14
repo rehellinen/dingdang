@@ -18,5 +18,5 @@ class ParameterException extends BaseException
     public $msg = '参数错误';
 
     //自定义的错误码
-    public $errorCode = 10000;
+    public $status = 10000;
 }

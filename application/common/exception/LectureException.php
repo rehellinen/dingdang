@@ -18,5 +18,5 @@ class LectureException extends BaseException
     public $msg = '获取讲座信息失败';
 
     //自定义的错误码
-    public $errorCode = 30000;
+    public $status= 30000;
 }

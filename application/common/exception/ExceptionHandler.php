@@ -17,7 +17,7 @@ class ExceptionHandler extends Handle
 {
     private $code;
     private $msg;
-    private $errorCode;
+    private $status;
 
     public function render(\Exception $e)
     {
@@ -25,14 +25,14 @@ class ExceptionHandler extends Handle
             //如果是自定义的异常
             $this->code = $e->code;
             $this->msg = $e->msg;
-            $this->errorCode = $e->errorCode;
+            $this->status = $e->status;
         }else{
             if(config('app_debug')){
                 return parent::render($e);
             }else{
                 $this->code = 500;
                 $this->msg = '服务器内部错误';
-                $this->errorCode = 999;
+                $this->status = 999;
                 $this->recordErrorLog($e);
             }
         }
@@ -41,7 +41,7 @@ class ExceptionHandler extends Handle
         $url = Request::instance()->url();
 
         $result = [
-            'status' => $this->errorCode,
+            'status' => $this->status,
             'message' => $this->msg,
             'data' => ['request_url' => $url]
         ];

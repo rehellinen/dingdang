@@ -18,5 +18,5 @@ class TokenException extends BaseException
     public $msg = 'Token已过期或无效Token';
 
     //自定义的错误码
-    public $errorCode = 10004;
+    public $status = 10004;
 }

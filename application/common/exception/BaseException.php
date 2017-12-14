@@ -21,7 +21,7 @@ class BaseException extends Exception
     public $msg = '参数错误';
 
     //自定义的错误码
-    public $errorCode = 10000;
+    public $status = 10000;
 
     public function __construct($params = [])
     {
@@ -36,7 +36,7 @@ class BaseException extends Exception
             $this->msg = $params['msg'];
         }
         if(array_key_exists('errorCode', $params)){
-            $this->errorCode = $params['errorCode'];
+            $this->status = $params['status'];
         }
     }
 }

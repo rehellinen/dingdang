@@ -18,5 +18,5 @@ class UserException extends BaseException
     public $msg = '用户不存在';
 
     //自定义的错误码
-    public $errorCode = 60000;
+    public $status = 60000;
 }
