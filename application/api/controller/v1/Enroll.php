@@ -6,7 +6,7 @@
  * Time: 13:02
  */
 
-namespace app\api\controller;
+namespace app\api\controller\v1;
 
 
 use app\common\service\Token;

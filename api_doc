@@ -1,0 +1,22 @@
+baseUrl: rehellinen.cn/project/dingdang/public
+:version 为api版本号，目前为v1;
+例如：/api/v1/banner
+
+1.  get     /api/:version/banner
+    获取轮播图
+2.  post    /api/:version/Attendance
+    签到
+3.  post    /api/:version/enroll
+    预报名
+4.  get     api/:version/allLectures
+    获取所有讲座信息
+5.  get     api/:version/allActivities
+    获取所有活动信息
+6.  get     api/:version/activity/:id
+    根据id获取讲座
+7.  post    api/:version/login
+    登录
+8.  get     api/:version/user
+    获取用户信息
+9.  post    api/:version/user
+    注册

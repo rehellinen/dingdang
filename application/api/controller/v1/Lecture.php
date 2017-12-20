@@ -1,5 +1,5 @@
 <?php
-namespace app\api\controller;
+namespace app\api\controller\v1;
 
 use think\Controller;
 use app\common\exception\LectureException;
@@ -12,7 +12,7 @@ use app\common\exception\LectureException;
  */
 class Lecture extends Controller
 {
-    public function getAllLecture()
+    public function getAllLectures()
     {
 
         $lectures = model('Lecture')->getNormalLecture();
@@ -24,7 +24,7 @@ class Lecture extends Controller
         return show(1,'获取全部讲座信息成功', $lectures);
     }
 
-    public function getAllActivity()
+    public function getAllActivities()
     {
         $activities = model('Lecture')->getNormalActivity();
 

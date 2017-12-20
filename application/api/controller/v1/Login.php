@@ -6,7 +6,7 @@
  * Time: 20:48
  */
 
-namespace app\api\controller;
+namespace app\api\controller\v1;
 
 
 use think\Controller;
@@ -28,7 +28,6 @@ class Login extends Controller
 
         // app发放令牌
         $token =  (new TokenService())->get($user['id']);
-        //$token = (new Token())->getToken($user['id']);
 
         if($data && $token) {
             return show(1,'登录成功', ['token' => $token]);
