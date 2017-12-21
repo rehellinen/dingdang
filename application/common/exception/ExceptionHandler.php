@@ -15,24 +15,24 @@ use think\Request;
 
 class ExceptionHandler extends Handle
 {
-    private $code;
-    private $msg;
+    private $httpCode;
+    private $message;
     private $status;
 
     public function render(\Exception $e)
     {
         if($e instanceof BaseException){
             //如果是自定义的异常
-            $this->code = $e->code;
-            $this->msg = $e->msg;
+            $this->httpCode = $e->httpCode;
+            $this->message = $e->message;
             $this->status = $e->status;
         }else{
             if(config('app_debug')){
                 return parent::render($e);
             }else{
-                $this->code = 500;
-                $this->msg = '服务器内部错误';
-                $this->status = 999;
+                $this->httpCode = 500;
+                $this->message = '服务器内部错误';
+                $this->status = 99999;
                 $this->recordErrorLog($e);
             }
         }
@@ -42,10 +42,10 @@ class ExceptionHandler extends Handle
 
         $result = [
             'status' => $this->status,
-            'message' => $this->msg,
+            'message' => $this->message,
             'data' => ['request_url' => $url]
         ];
-        return json($result, $this->code);
+        return json($result, $this->httpCode);
     }
 
     private function recordErrorLog(\Exception $e)

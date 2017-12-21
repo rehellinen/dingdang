@@ -15,10 +15,10 @@ use Throwable;
 class BaseException extends Exception
 {
     // HTTP 状态码 404, 200
-    public $code = 400;
+    public $httpCode = 400;
 
     //具体错误信息
-    public $msg = '参数错误';
+    public $message = '参数错误';
 
     //自定义的错误码
     public $status = 10000;
@@ -29,13 +29,13 @@ class BaseException extends Exception
             return ;
         }
 
-        if(array_key_exists('code', $params)){
-            $this->code = $params['code'];
+        if(array_key_exists('httpCode', $params)){
+            $this->code = $params['httpCode'];
         }
-        if(array_key_exists('msg', $params)){
-            $this->msg = $params['msg'];
+        if(array_key_exists('message', $params)){
+            $this->msg = $params['message'];
         }
-        if(array_key_exists('errorCode', $params)){
+        if(array_key_exists('status', $params)){
             $this->status = $params['status'];
         }
     }
