@@ -29,5 +29,5 @@ Route::get('api/:version/activity/:id', 'api/:version.Lecture/getLectureById');
 Route::post('api/:version/login', 'api/:version.Login/appLogin');
 
 // 用户
-Route::post('api/:version/user', 'api/:version.User/register');
+Route::post(' ', 'api/:version.User/register');
 Route::get('api/:version/user', 'api/:version.User/getInfo');

@@ -37,7 +37,7 @@ class Lecture extends Controller
 
     public function getLectureById($id)
     {
-        $lecture = model('Lecture')->get($id);
+        $lecture = model('Lecture')->with('placeId')->getById($id);
         if(!$lecture) {
             throw new LectureException();
         }

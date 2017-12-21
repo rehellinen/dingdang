@@ -46,7 +46,7 @@ class Lecture extends BaseModel
         $condition = [
             'status' => 1
         ];
-        return $this->where($condition)->order('time desc, id desc')->select();
+        return $this->where($condition)->order('time desc, id desc')->with('placeId')->select();
     }
 
     public function getNormalActivity()
@@ -54,7 +54,7 @@ class Lecture extends BaseModel
         $condition = [
             'status' => 2
         ];
-        return $this->where($condition)->order('time desc, id desc')->select();
+        return $this->where($condition)->order('time desc, id desc')->with('placeId')->select();
     }
 
     public function getById($id)
