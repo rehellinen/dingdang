@@ -11,12 +11,7 @@ namespace app\common\exception;
 
 class UserException extends BaseException
 {
-    // HTTP 状态码 404, 200
-    public $code = 403;
-
-    //具体错误信息
-    public $msg = '用户不存在';
-
-    //自定义的错误码
-    public $status = 60000;
+    public $httpCode = 403;
+    public $message = '用户不存在';
+    public $status= 60000;
 }

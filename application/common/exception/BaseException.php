@@ -33,7 +33,7 @@ class BaseException extends Exception
             $this->code = $params['httpCode'];
         }
         if(array_key_exists('message', $params)){
-            $this->msg = $params['message'];
+            $this->message = $params['message'];
         }
         if(array_key_exists('status', $params)){
             $this->status = $params['status'];

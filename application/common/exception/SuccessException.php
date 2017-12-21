@@ -11,12 +11,7 @@ namespace app\common\exception;
 
 class SuccessException extends BaseException
 {
-    // HTTP 状态码 404, 200
-    public $code = 200;
-
-    //具体错误信息
-    public $msg = '成功';
-
-    //自定义的错误码
-    public $status = 90000;
+    public $httpCode = 200;
+    public $message = '成功';
+    public $status= 90000;
 }

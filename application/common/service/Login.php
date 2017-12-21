@@ -26,7 +26,7 @@ class Login
 
         if(!$res) {
             throw new UserException([
-                'msg' => '密码错误',
+                'message' => '密码错误',
                 'status' => '60001'
             ]);
         }
@@ -48,7 +48,7 @@ class Login
 
         if(!$res) {
             throw new UserException([
-                'msg' => '密码错误',
+                'message' => '密码错误',
                 'status' => '60001'
             ]);
         }

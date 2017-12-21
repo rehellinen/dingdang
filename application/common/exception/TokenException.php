@@ -11,12 +11,7 @@ namespace app\common\exception;
 
 class TokenException extends BaseException
 {
-    // HTTP 状态码 404, 200
-    public $code = 400;
-
-    //具体错误信息
-    public $msg = 'Token已过期或无效Token';
-
-    //自定义的错误码
-    public $status = 10004;
+    public $httpCode = 400;
+    public $message = 'Token已过期或无效Token';
+    public $status= 10004;
 }

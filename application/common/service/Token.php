@@ -49,7 +49,7 @@ class Token
         if(!$result) {
             throw new TokenException([
                 'status' => 10005,
-                'msg' => '服务器缓存写入失败'
+                'message' => '服务器缓存写入失败'
             ]);
         }
 

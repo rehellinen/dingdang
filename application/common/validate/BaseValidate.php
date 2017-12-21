@@ -25,13 +25,14 @@ class BaseValidate extends Validate
 
         //获取错误信息
         $error = $this->error;
+
         if(!$result){
-            $e = new ParameterException([
-                'msg' => $error,
-                'errorCode' => 111
-            ]);
-            throw $e;
-        }
+        $e = new ParameterException([
+            'message' => $error,
+            'status' => 10000
+        ]);
+        throw $e;
+    }
         return true;
     }
 
