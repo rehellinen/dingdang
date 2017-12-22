@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"C:\wamp\www\dingdang\public/../application/admin\view\lecture\index.html";i:1513177000;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:72:"C:\wamp\www\dingdang\public/../application/admin\view\lecture\index.html";i:1513910463;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\header.html";i:1510456974;s:69:"C:\wamp\www\dingdang\public/../application/admin\view\public\nav.html";i:1512123514;s:72:"C:\wamp\www\dingdang\public/../application/admin\view\public\footer.html";i:1510456924;}*/ ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -81,6 +81,7 @@
                 <tr>
                     <th>id</th>
                     <th>标题</th>
+                    <th>举办方</th>
                     <th>时间</th>
                     <th>地点</th>
                     <th>类型</th>
@@ -92,6 +93,7 @@
                     <tr>
                         <td><?php echo $vo['id']; ?></td>
                         <td><?php echo $vo['title']; ?></td>
+                        <td><?php echo $vo['holder']; ?></td>
                         <td><?php echo $vo['time']; ?></td>
                         <td><?php echo $vo['place_id']['name']; ?></td>
                         <td><?php echo getLectureType($vo['status']); ?></td>
