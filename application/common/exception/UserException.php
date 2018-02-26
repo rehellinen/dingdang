@@ -11,7 +11,7 @@ namespace app\common\exception;
 
 class UserException extends BaseException
 {
-    public $httpCode = 403;
+    public $httpCode = 200;
     public $message = '用户不存在';
     public $status= 60000;
 }

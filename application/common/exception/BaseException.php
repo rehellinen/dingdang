@@ -15,7 +15,7 @@ use Throwable;
 class BaseException extends Exception
 {
     // HTTP 状态码 404, 200
-    public $httpCode = 400;
+    public $httpCode = 200;
 
     //具体错误信息
     public $message = '参数错误';

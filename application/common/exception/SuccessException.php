@@ -13,5 +13,5 @@ class SuccessException extends BaseException
 {
     public $httpCode = 200;
     public $message = '成功';
-    public $status= 90000;
+    public $status= 1;
 }
