@@ -9,6 +9,8 @@
 namespace app\api\controller\v1;
 
 
+use app\common\exception\BannerException;
+use app\common\exception\SuccessException;
 use think\Controller;
 
 class Banner extends Controller
@@ -17,6 +19,12 @@ class Banner extends Controller
     {
         $banner = model('Banner')->where('status=1')->order('listorder desc, id desc')->select();
 
-        return show(1, '获取轮播图成功', $banner);
+        if($banner){
+            throw new SuccessException([
+                'data' => $banner
+            ]);
+        }else{
+            throw new BannerException();
+        }
     }
 }

@@ -51,7 +51,7 @@
                         <li><a class="<?php echo $controller=='User'?'menu-top-active' : ''; ?>" href="__URL__admin/user/index">用户管理</a></li>
                         <li><a class="<?php echo $controller=='Lecture'?'menu-top-active' : ''; ?>" href="__URL__admin/lecture/index">讲座管理</a></li>
                         <li><a class="<?php echo $controller=='Place'?'menu-top-active' : ''; ?>" href="__URL__admin/place/index">地点管理</a></li>
-                        <li><a class="<?php echo $controller=='Attendance'?'menu-top-active' : ''; ?>" href="__URL__admin/attendance/index">签到管理</a></li>
+                        <li><a class="<?php echo $controller=='AttendanceException'?'menu-top-active' : ''; ?>" href="__URL__admin/attendance/index">签到管理</a></li>
                         <li><a class="<?php echo $controller=='Enroll'?'menu-top-active' : ''; ?>" href="__URL__admin/enroll/index">报名管理</a></li>
                         <li><a  href="__URL__admin/login/logout">退出登录</a></li>
                     </ul>

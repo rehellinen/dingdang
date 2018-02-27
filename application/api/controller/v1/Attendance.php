@@ -9,7 +9,9 @@
 namespace app\api\controller\v1;
 
 
+use app\common\exception\AttendanceException;
 use think\Controller;
+use think\Exception;
 use think\Request;
 use app\common\service\Token;
 
@@ -29,18 +31,20 @@ class Attendance extends Controller
             'address' => $address
         ];
 
-        $res = model('Attendance')->save($data);
+        $res = model('AttendanceException')->save($data);
 
         if(!$res) {
-            return show(0, '签到失败');
+            throw new AttendanceException();
         } else {
-            return show(1, '签到成功');
+            throw new Exception([
+                'message' => '签到成功'
+            ]);
         }
     }
 
 //    public function get()
 //    {
-//        $attendance = model('Attendance')->with(['userId', 'lecture_id'])->select();
+//        $attendance = model('AttendanceException')->with(['userId', 'lecture_id'])->select();
 //        return show(1,'test', $attendance);
 //    }
 }

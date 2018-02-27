@@ -3,6 +3,7 @@ namespace app\api\controller\v1;
 
 use think\Controller;
 use app\common\exception\LectureException;
+use app\common\exception\SuccessException;
 
 /**
  * Created by PhpStorm.
@@ -20,8 +21,10 @@ class Lecture extends Controller
         if(!$lectures) {
             throw new LectureException();
         }
-
-        return show(1,'获取全部讲座信息成功', $lectures);
+        throw new SuccessException([
+            'message' => '获取全部讲座信息成功',
+            'data' => $lectures
+        ]);
     }
 
     public function getAllActivities()
@@ -32,7 +35,10 @@ class Lecture extends Controller
             throw new LectureException();
         }
 
-        return show(1,'获取全部活动信息成功', $activities);
+        throw new SuccessException([
+            'message' => '获取全部活动信息成功',
+            'data' => $activities
+        ]);
     }
 
     public function getLectureById($id)
@@ -42,6 +48,9 @@ class Lecture extends Controller
             throw new LectureException();
         }
 
-        return show(1,'获取讲座信息成功', $lecture);
+        throw new SuccessException([
+            'message' => '获取全部活动信息成功',
+            'data' => $lecture
+        ]);
     }
 }
