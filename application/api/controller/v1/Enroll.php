@@ -22,12 +22,14 @@ class Enroll extends Controller
     {
         $post = Request::instance()->post();
         $lectureId = $post['lecture_id'];
+        $status = $post['status'];
 
         $uid = (new Token())->getVarsByToken('uid');
 
         $data = [
             'lecture_id' =>$lectureId,
-            'user_id' => $uid
+            'user_id' => $uid,
+            'status' => $status
         ];
 
         $res = model('Enroll')->save($data);
@@ -41,31 +43,34 @@ class Enroll extends Controller
         }
     }
 
-    public function isEnroll($id)
+    public function isEnroll($id, $status)
     {
         $uid = (new Token())->getVarsByToken('uid');
         $data = [
             'lecture_id' =>$id,
-            'user_id' => $uid
+            'user_id' => $uid,
+            'status' => $status
         ];
         $res = model('Enroll')->where($data)->find();
 
         if(!$res) {
-            throw new SuccessException([
-                'message' => '预报名'
+            throw new EnrollException([
+                'message' => '未报名 / 收藏',
+                'status' => 70002
             ]);
         } else {
             throw new SuccessException([
-                'message' => '已报名'
+                'message' => '已报名 / 收藏'
             ]);
         }
     }
 
-    public function getEnroll()
+    public function getEnroll($status)
     {
         $uid = (new Token())->getVarsByToken('uid');
         $data = [
-            'user_id' => $uid
+            'user_id' => $uid,
+            'status' => $status
         ];
         $res = model('Enroll')->where($data)->select();
 

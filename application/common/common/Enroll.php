@@ -11,6 +11,12 @@ namespace app\common\common;
 
 class Enroll extends BaseModel
 {
+    public function getLectureIdAttr($value)
+    {
+        $lecture = new Lecture();
+        return $value = $lecture->find($value);
+    }
+
     public function userId()
     {
         return $this->hasOne('user', 'id', 'user_id');
