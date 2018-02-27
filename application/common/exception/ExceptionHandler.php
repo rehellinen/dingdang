@@ -18,6 +18,7 @@ class ExceptionHandler extends Handle
     private $httpCode;
     private $message;
     private $status;
+    private $data;
 
     public function render(\Exception $e)
     {
@@ -26,6 +27,7 @@ class ExceptionHandler extends Handle
             $this->httpCode = $e->httpCode;
             $this->message = $e->message;
             $this->status = $e->status;
+            $this->data = $e->data;
         }else{
             if(config('app_debug')){
                 return parent::render($e);
@@ -39,11 +41,12 @@ class ExceptionHandler extends Handle
 
         //获取请求URL
         $url = Request::instance()->url();
+        $this->data['request_url'] = $url;
 
         $result = [
             'status' => $this->status,
             'message' => $this->message,
-            'data' => ['request_url' => $url]
+            'data' => $this->data
         ];
         return json($result, $this->httpCode);
     }

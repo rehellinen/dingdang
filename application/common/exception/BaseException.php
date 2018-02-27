@@ -17,11 +17,14 @@ class BaseException extends Exception
     // HTTP 状态码 404, 200
     public $httpCode = 200;
 
-    //具体错误信息
+    // 具体错误信息
     public $message = '参数错误';
 
-    //自定义的错误码
+    // 自定义的错误码
     public $status = 10000;
+
+    // 返回的数据
+    public $data = [];
 
     public function __construct($params = [])
     {
@@ -37,6 +40,9 @@ class BaseException extends Exception
         }
         if(array_key_exists('status', $params)){
             $this->status = $params['status'];
+        }
+        if(array_key_exists('data', $params)){
+            $this->data['data'] = $params['data'];
         }
     }
 }

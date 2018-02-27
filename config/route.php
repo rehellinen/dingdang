@@ -19,7 +19,7 @@ Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
 
 // 报名
 Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
-Route::get('api/:version/enroll/:id', 'api/:version.Enroll/isEnroll');
+//Route::get('api/:version/enroll/:id', 'api/:version.Enroll/isEnroll');
 Route::get('api/:version/enroll', 'api/:version.Enroll/getEnroll');
 
 
