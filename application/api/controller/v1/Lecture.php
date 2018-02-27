@@ -43,6 +43,5 @@ class Lecture extends Controller
         }
 
         return show(1,'获取讲座信息成功', $lecture);
-
     }
 }

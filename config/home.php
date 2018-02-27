@@ -11,5 +11,5 @@ return [
         '__STATIC__' => '/dingdang/public/static',
         '__URL__' => '/dingdang/public/Index.php?s='
     ],
-    'img_url' => '/dingdang/public/'
+    'img_url' => 'http://localhost/dingdang/public/'
 ];

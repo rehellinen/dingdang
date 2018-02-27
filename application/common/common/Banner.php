@@ -15,6 +15,7 @@ class Banner extends BaseModel
 {
     public function getPhotoUrlAttr($value)
     {
+        $value = str_replace('\\',"/",$value);
         $value = config('img_url').$value;
         return $value;
     }
