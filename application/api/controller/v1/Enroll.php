@@ -38,7 +38,36 @@ class Enroll extends Controller
             throw new Exception();
         } else {
             throw new SuccessException([
-                'message' => '报名成功'
+                'message' => '报名 / 收藏成功'
+            ]);
+        }
+    }
+
+    public function cancelEnroll($id, $status)
+    {
+        $uid = (new Token())->getVarsByToken('uid');
+
+        $data = [
+            'lecture_id' =>$id,
+            'user_id' => $uid,
+            'status' => $status
+        ];
+
+        $isExisted = model('Enroll')->where($data)->find();
+
+        if($isExisted){
+            $res = model('Enroll')->where($data)->update(['status' => -1]);
+            if(!$res) {
+                throw new Exception();
+            } else {
+                throw new SuccessException([
+                    'message' => '取消报名 / 收藏成功'
+                ]);
+            }
+        }else{
+            throw new EnrollException([
+                'message' => '用户没有收藏 \ 报名当前的活动',
+                'status' => '70002'
             ]);
         }
     }

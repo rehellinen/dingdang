@@ -21,6 +21,7 @@ Route::post('api/:version/attendance', 'api/:version.AttendanceException/sign');
 Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
 Route::get('api/:version/enroll/:id/:status', 'api/:version.Enroll/isEnroll');
 Route::get('api/:version/enroll/:status', 'api/:version.Enroll/getEnroll');
+Route::get('api/:version/enroll/:id/:status/cancel', 'api/:version.Enroll/cancelEnroll');
 
 
 // 讲座
