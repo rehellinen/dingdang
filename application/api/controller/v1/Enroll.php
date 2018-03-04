@@ -32,14 +32,22 @@ class Enroll extends Controller
             'status' => $status
         ];
 
-        $res = model('Enroll')->save($data);
+        $isExist = model('Enroll')->where($data)->find();
+        if(!$isExist){
+            $res = model('Enroll')->save($data);
 
-        if(!$res) {
-            throw new Exception();
-        } else {
-            throw new SuccessException([
-                'message' => '报名 / 收藏成功'
-            ]);
+            if(!$res) {
+                throw new Exception();
+            } else {
+                throw new SuccessException([
+                    'message' => '报名 / 收藏成功'
+                ]);
+            }
+        }else{
+           throw new EnrollException([
+                'status' => '70003',
+                'message' => '用户已收藏 \ 报名当前活动，无法重复操作'
+           ]);
         }
     }
 
