@@ -22,7 +22,7 @@ return [
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
-    'app_status'             => 'server',
+    'app_status'             => 'home',
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -96,7 +96,7 @@ return [
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
     // 是否强制使用路由
-    'url_route_must'         => true,
+    'url_route_must'         => false,
     // 域名部署
     'url_domain_deploy'      => false,
     // 域名根，如thinkphp.cn
@@ -117,7 +117,7 @@ return [
     'request_cache_expire'   => null,
     // 全局请求缓存排除规则
     'request_cache_except'   => [],
-
+-
     // +----------------------------------------------------------------------
     // | 模板设置
     // +----------------------------------------------------------------------

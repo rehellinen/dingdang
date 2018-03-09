@@ -36,7 +36,7 @@ $('* .listorder').blur(function () {
 
 $('* .editButton').click(function () {
     var id = $(this).attr('attr-id');
-    window.location.href=URL.edit_url+"?info=1&id="+id;
+    window.location.href=URL.edit_url+"?id="+id;
 });
 
 $('* .statusButton').click(function () {

@@ -8,9 +8,8 @@
 namespace app\admin\controller;
 
 use app\common\service\Login as LoginService;
-use app\common\validate\Api;
 use think\Controller;
-use think\Request;
+Use app\common\validate\User;
 use think\Session;
 
 class Login extends Controller
@@ -22,15 +21,18 @@ class Login extends Controller
 
     public function check()
     {
-        (new Api())->goCheck('appLogin');
-        $data = (new Api())->getDataByScene('appLogin');
+        $validate = (new User());
+        if(!$validate->goCheck('login')){
+            return show(0, $validate->getError());
+        }
+        $data = $validate->getDataByScene('login');
 
         // 判断用户是否存在、密码是否正确
         $loginService = new LoginService();
         $user = $loginService->checkCMS($data);
 
         if($user) {
-            Session::set('loginSeller', $user, 'admin');
+            Session::set('loginUser', $user, 'admin');
             return show(1,'登录成功');
         }
         return show(0,'登录失败');
@@ -40,7 +42,7 @@ class Login extends Controller
 
     public function logOut()
     {
-        Session::set('loginSeller', null, 'admin');
+        Session::set('loginUser', null, 'admin');
         $this->redirect('admin/login/index');
     }
 }

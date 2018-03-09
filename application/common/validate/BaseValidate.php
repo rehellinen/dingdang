@@ -27,11 +27,10 @@ class BaseValidate extends Validate
         $error = $this->error;
 
         if(!$result){
-        $e = new ParameterException([
+        throw new ParameterException([
             'message' => $error,
             'status' => 10000
         ]);
-        throw $e;
     }
         return true;
     }

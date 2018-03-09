@@ -30,9 +30,4 @@ class Index extends BaseController
             'enrollCount' => $enrollCount
         ]);
     }
-
-    public function test()
-    {
-        return $this->fetch();
-    }
 }

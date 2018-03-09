@@ -14,8 +14,8 @@ class Attendance extends BaseController
 {
     public function index()
     {
-        $attendance = Loader::model('AttendanceException')->getNotDelete();
-        $attendanceArray = Loader::model('AttendanceException')->getNotDelete()->toArray();
+        $attendance = Loader::model('Attendance')->getNotDelete();
+        $attendanceArray = Loader::model('Attendance')->getNotDelete()->toArray();
 
         return $this->fetch('', [
             'attendance' => $attendance,
