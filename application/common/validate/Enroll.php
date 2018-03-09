@@ -12,7 +12,15 @@ namespace app\common\validate;
 class Enroll extends BaseValidate
 {
     protected $rule = [
-        ['user_id', 'require|isPositiveInt', 'user_id不能为空|user_id必须是正整数'],
-        ['lecture_id', 'require|isPositiveInt', 'lecture_id不能为空|lecture_id必须是正整数']
+        ['user_id', 'require', 'user_id不能为空'],
+        ['lecture_id', 'require', 'lecture_id不能为空'],
+        ['status', 'require', 'lecture_id不能为空']
+    ];
+
+    protected $scene = [
+        'enroll' => ['status', 'lecture_id'],
+        'cancelEnroll' => ['status', 'lecture_id'],
+        'isEnroll' => ['status', 'lecture_id'],
+        'getEnroll' => ['status']
     ];
 }

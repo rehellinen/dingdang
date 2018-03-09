@@ -19,4 +19,9 @@ class Banner extends BaseModel
         $value = config('img_url').$value;
         return $value;
     }
+
+    public function getBanner()
+    {
+        return $this->where('status=1')->order('listorder desc, id desc')->limit(config('setting.banner_max_count'))->select();
+    }
 }

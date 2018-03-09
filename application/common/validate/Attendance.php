@@ -18,6 +18,6 @@ class Attendance extends BaseValidate
     ];
 
     protected $scene = [
-
+        'signIn' => ['lecture_id', 'address']
     ];
 }

@@ -9,24 +9,29 @@
 namespace app\api\controller\v1;
 
 
+use app\common\exception\SuccessException;
+use app\common\exception\UserException;
 use think\Controller;
-use app\common\validate\Api;
 use app\common\service\Register;
 use app\common\service\Token;
+use app\common\validate\User as UserValidate;
+use think\Exception;
 
 class User extends Controller
 {
     public function register()
     {
-        (new Api())->goCheck('register');
-        $data = (new Api())->getDataByScene('register');
+        (new UserValidate())->goCheck('register');
+        $data = (new UserValidate())->getDataByScene('register');
 
         $res = (new Register)->encryptSave($data);
 
         if($res){
-            return show(1,'注册成功');
+            throw new SuccessException([
+                'message' => '注册成功'
+            ]);
         }else{
-            return show(0, '注册失败');
+            throw new Exception();
         }
     }
 
@@ -37,9 +42,11 @@ class User extends Controller
         $res = model('User')->where('id='.$uid)->find();
 
         if($res){
-            return show(1,'获取成功', $res);
+            throw new SuccessException([
+                'message' => '获取成功'
+            ]);
         }else{
-            return show(0, '获取失败');
+            throw new Exception();
         }
     }
 }

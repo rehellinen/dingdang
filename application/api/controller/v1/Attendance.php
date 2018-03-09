@@ -10,41 +10,34 @@ namespace app\api\controller\v1;
 
 
 use app\common\exception\AttendanceException;
+use app\common\exception\SuccessException;
 use think\Controller;
-use think\Exception;
-use think\Request;
+use app\common\validate\Attendance as AttendanceValidate;
 use app\common\service\Token;
 
 class Attendance extends Controller
 {
     public function sign()
     {
-        $post = Request::instance()->post();
-        $lectureId = $post['lecture_id'];
-        $address = $post['address'];
+        $validate = new AttendanceValidate();
+        $validate->goCheck('signIn');
 
+        $data = $validate->getDataByScene('signIn');
         $uid = (new Token())->getVarsByToken('uid');
+        $data['user_id'] = $uid;
 
-        $data = [
-            'lecture_id' => $lectureId,
-            'user_id' => $uid,
-            'address' => $address
-        ];
-
-        $res = model('AttendanceException')->save($data);
+        if(!model('Attendance')->where($data)->find()){
+            $res = model('Attendance')->save($data);
+        }else{
+            $res = null;
+        }
 
         if(!$res) {
             throw new AttendanceException();
         } else {
-            throw new Exception([
+            throw new SuccessException([
                 'message' => '签到成功'
             ]);
         }
     }
-
-//    public function get()
-//    {
-//        $attendance = model('AttendanceException')->with(['userId', 'lecture_id'])->select();
-//        return show(1,'test', $attendance);
-//    }
 }

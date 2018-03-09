@@ -19,6 +19,7 @@ class User extends BaseValidate
     ];
 
     protected $scene = [
-        'login' => ['telephone', 'password']
+        'login' => ['telephone', 'password'],
+        'register' => ['telephone', 'password', 'number', 'name']
     ];
 }

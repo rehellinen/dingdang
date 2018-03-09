@@ -4,6 +4,7 @@ namespace app\api\controller\v1;
 use think\Controller;
 use app\common\exception\LectureException;
 use app\common\exception\SuccessException;
+use app\common\common\Lecture as LectureModel;
 
 /**
  * Created by PhpStorm.
@@ -16,7 +17,7 @@ class Lecture extends Controller
     public function getAllLectures()
     {
 
-        $lectures = model('Lecture')->getNormalLecture();
+        $lectures = (new LectureModel())->getNormalLecture();
 
         if(!$lectures) {
             throw new LectureException();
@@ -29,7 +30,7 @@ class Lecture extends Controller
 
     public function getAllActivities()
     {
-        $activities = model('Lecture')->getNormalActivity();
+        $activities = (new LectureModel())->getNormalActivity();
 
         if(!$activities) {
             throw new LectureException();
@@ -43,7 +44,7 @@ class Lecture extends Controller
 
     public function getLectureById($id)
     {
-        $lecture = model('Lecture')->with('placeId')->getById($id);
+        $lecture = (new LectureModel())->getById($id);
         if(!$lecture) {
             throw new LectureException();
         }

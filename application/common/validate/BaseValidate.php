@@ -38,14 +38,14 @@ class BaseValidate extends Validate
     // validate 检测什么参数则对什么参数进行操作
     public function getDataByScene($scene)
     {
-        $post = Request::instance()->post();
+        $params = Request::instance()->param();
 
         $rule = $this->scene[$scene];
         $newData = array();
 
         foreach ($rule as $key => $value)
         {
-            $newData[$value] = $post[$value];
+            $newData[$value] = $params[$value];
         }
 
         return $newData;

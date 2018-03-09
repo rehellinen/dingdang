@@ -24,7 +24,9 @@ class Token extends Controller
         if(!$res){
             throw new TokenException();
         }else{
-            throw new SuccessException();
+            throw new SuccessException([
+                'message' => 'Token未过期'
+            ]);
         }
     }
 }

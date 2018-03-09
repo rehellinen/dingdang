@@ -27,8 +27,6 @@ class Lecture extends BaseModel
                 ->paginate(15);
     }
 
-
-
     public function getPhotoUrlAttr($value)
     {
         $value = str_replace('\\',"/",$value);

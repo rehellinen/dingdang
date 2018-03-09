@@ -12,12 +12,13 @@ namespace app\api\controller\v1;
 use app\common\exception\BannerException;
 use app\common\exception\SuccessException;
 use think\Controller;
+use app\common\common\Banner as BannerModel;
 
 class Banner extends Controller
 {
     public function getBanner()
     {
-        $banner = model('Banner')->where('status=1')->order('listorder desc, id desc')->select();
+        $banner =(new BannerModel)->getBanner();
 
         if($banner){
             throw new SuccessException([

@@ -15,22 +15,18 @@ use app\common\service\Token;
 use think\Controller;
 use think\Exception;
 use think\Request;
+use app\common\validate\Enroll as EnrollValidate;
 
 class Enroll extends Controller
 {
     public function enroll()
     {
-        $post = Request::instance()->post();
-        $lectureId = $post['lecture_id'];
-        $status = $post['status'];
+        $validate = (new EnrollValidate);
+        $validate->goCheck('enroll');
 
+        $data = $validate->getDataByScene('enroll');
         $uid = (new Token())->getVarsByToken('uid');
-
-        $data = [
-            'lecture_id' =>$lectureId,
-            'user_id' => $uid,
-            'status' => $status
-        ];
+        $data['user_id'] = $uid;
 
         $isExist = model('Enroll')->where($data)->find();
         if(!$isExist){
@@ -51,15 +47,14 @@ class Enroll extends Controller
         }
     }
 
-    public function cancelEnroll($id, $status)
+    public function cancelEnroll()
     {
-        $uid = (new Token())->getVarsByToken('uid');
+        $validate = (new EnrollValidate);
+        $validate->goCheck('cancelEnroll');
 
-        $data = [
-            'lecture_id' =>$id,
-            'user_id' => $uid,
-            'status' => $status
-        ];
+        $data = $validate->getDataByScene('cancelEnroll');
+        $uid = (new Token())->getVarsByToken('uid');
+        $data['user_id'] = $uid;
 
         $isExisted = model('Enroll')->where($data)->find();
 
@@ -80,14 +75,15 @@ class Enroll extends Controller
         }
     }
 
-    public function isEnroll($id, $status)
+    public function isEnroll()
     {
+        $validate = (new EnrollValidate());
+        $validate->goCheck('isEnroll');
+
+        $data = $validate->getDataByScene('isEnroll');
         $uid = (new Token())->getVarsByToken('uid');
-        $data = [
-            'lecture_id' =>$id,
-            'user_id' => $uid,
-            'status' => $status
-        ];
+        $data['user_id'] = $uid;
+
         $res = model('Enroll')->where($data)->find();
 
         if(!$res) {
@@ -102,13 +98,15 @@ class Enroll extends Controller
         }
     }
 
-    public function getEnroll($status)
+    public function getEnroll()
     {
+        $validate = (new EnrollValidate());
+        $validate->goCheck('getEnroll');
+
+        $data = $validate->getDataByScene('getEnroll');
         $uid = (new Token())->getVarsByToken('uid');
-        $data = [
-            'user_id' => $uid,
-            'status' => $status
-        ];
+        $data['user_id'] = $uid;
+
         $res = model('Enroll')->where($data)->select();
 
         if(!$res) {

@@ -19,9 +19,9 @@ Route::post('api/:version/attendance', 'api/:version.AttendanceException/sign');
 
 // 报名
 Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
-Route::get('api/:version/enroll/:id/:status', 'api/:version.Enroll/isEnroll');
+Route::get('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/isEnroll');
 Route::get('api/:version/enroll/:status', 'api/:version.Enroll/getEnroll');
-Route::get('api/:version/enroll/:id/:status/cancel', 'api/:version.Enroll/cancelEnroll');
+Route::get('api/:version/enroll/:lecture_id/:status/cancel', 'api/:version.Enroll/cancelEnroll');
 
 
 // 讲座
