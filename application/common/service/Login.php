@@ -7,8 +7,8 @@
  */
 namespace app\common\service;
 
+use app\common\common\User;
 use app\common\exception\UserException;
-use think\Loader;
 
 class Login
 {
@@ -16,7 +16,7 @@ class Login
     {
         $telephone = $data['telephone'];
 
-        $user = Loader::model('User')->getLoginUser($telephone, 1);
+        $user = (new User())->getLoginUser($telephone, 1);
 
         if(!$user) {
             throw new UserException();
@@ -38,7 +38,7 @@ class Login
     {
         $telephone = $data['telephone'];
 
-        $user = Loader::model('User')->getLoginUser($telephone, 2);
+        $user = (new User())->getLoginUser($telephone, 2);
 
         if(!$user) {
             throw new UserException();
