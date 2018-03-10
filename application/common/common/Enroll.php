@@ -17,14 +17,10 @@ class Enroll extends BaseModel
         return $value = $lecture->find($value);
     }
 
-    public function userId()
+    public function getUserIdAttr($value)
     {
-        return $this->hasOne('user', 'id', 'user_id');
-    }
-
-    public function lectureId()
-    {
-        return $this->hasOne('lecture', 'id', 'lecture_id');
+        $user = new User();
+        return $user->find($value);
     }
 
     public function getEnrollCount()
@@ -36,6 +32,6 @@ class Enroll extends BaseModel
     public function getNotDelete()
     {
         $condition['status'] = array('neq', -1);
-        return $this->where($condition)->order('id desc')->with(['userId', 'lectureId'])->paginate(15);
+        return $this->where($condition)->order('id desc')->paginate(15);
     }
 }

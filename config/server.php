@@ -10,5 +10,5 @@ return [
         '__STATIC__' => '/dingdang/public/static',
         '__URL__' => '/dingdang/public/Index.php?s='
     ],
-    'img_url' => 'https://20298479.rehellinen.cn/project/dingdang/public/'
+    'img_url' => 'https://20298479.rehellinen.cn/dingdang/public/'
 ];

@@ -15,15 +15,16 @@ class Lecture extends BaseModel
 
     ];
 
-    public function placeId()
+    public function getPlaceIdAttr($value)
     {
-        return $this->belongsTo('Place', 'place_id', 'id');
+        $place = new Place();
+        return $value = $place->find($value);
     }
 
     public function getNotDelete()
     {
         $condition['status'] = array('neq', -1);
-        return $this->where($condition)->with('PlaceId')->order('id desc')
+        return $this->where($condition)->order('id desc')
                 ->paginate(15);
     }
 
@@ -45,7 +46,7 @@ class Lecture extends BaseModel
         $condition = [
             'status' => 1
         ];
-        return $this->where($condition)->order('time desc, id desc')->with('placeId')->select();
+        return $this->where($condition)->order('time desc, id desc')->select();
     }
 
     public function getNormalActivity()
@@ -53,13 +54,13 @@ class Lecture extends BaseModel
         $condition = [
             'status' => 2
         ];
-        return $this->where($condition)->order('time desc, id desc')->with('placeId')->select();
+        return $this->where($condition)->order('time desc, id desc')->select();
     }
 
     public function getById($id)
     {
         $condition['status'] = array('neq', -1);
         $condition['id'] = $id;
-        return $this->where($condition)->with('placeId')->find()->toArray();
+        return $this->where($condition)->find()->toArray();
     }
 }

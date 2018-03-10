@@ -11,19 +11,21 @@ namespace app\common\common;
 
 class Attendance extends BaseModel
 {
-    public function userId()
+    public function getUserIdAttr($value)
     {
-        return $this->hasOne('user', 'id', 'user_id');
+        $user = new User();
+        return $user->find($value);
     }
 
-    public function lectureId()
+    public function getLectureIdAttr($value)
     {
-        return $this->hasOne('lecture', 'id', 'lecture_id');
+        $lecture = new Lecture();
+        return $lecture->find($value);
     }
 
     public function getNotDelete()
     {
         $condition['status'] = array('neq', -1);
-        return $this->where($condition)->order('id desc')->with(['userId', 'lectureId'])->paginate(15);
+        return $this->where($condition)->order('id desc')->paginate(15);
     }
 }

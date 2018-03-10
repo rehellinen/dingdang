@@ -15,7 +15,7 @@ use think\Route;
 Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 
 // 签到
-Route::post('api/:version/attendance', 'api/:version.AttendanceException/sign');
+Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
 
 // 报名
 Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
