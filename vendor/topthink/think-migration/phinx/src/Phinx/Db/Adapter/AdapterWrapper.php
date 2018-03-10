@@ -33,8 +33,7 @@ use Phinx\Db\Table\Column;
 use Phinx\Db\Table\Index;
 use Phinx\Db\Table\ForeignKey;
 use Phinx\Migration\MigrationInterface;
-use think\console\Input as InputInterface;
-use think\console\Output as OutputInterface;
+use think\console\Output;
 
 /**
  * Adapter Wrapper.
@@ -112,24 +111,7 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     /**
      * {@inheritdoc}
      */
-    public function setInput(InputInterface $input)
-    {
-        $this->adapter->setInput($input);
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getInput()
-    {
-        return $this->adapter->getInput();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setOutput(OutputInterface $output)
+    public function setOutput(Output $output)
     {
         $this->adapter->setOutput($output);
         return $this;
@@ -222,23 +204,6 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     {
         $this->getAdapter()->migrated($migration, $direction, $startTime, $endTime);
         return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function toggleBreakpoint(MigrationInterface $migration)
-    {
-        $this->getAdapter()->toggleBreakpoint($migration);
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function resetAllBreakpoints()
-    {
-        return $this->getAdapter()->resetAllBreakpoints();
     }
 
     /**
@@ -353,6 +318,11 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
         return $this->getAdapter()->dropTable($tableName);
     }
 
+    public function truncateTable($tableName)
+    {
+        return $this->getAdapter()->truncateTable($tableName);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -428,7 +398,7 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     /**
      * {@inheritdoc}
      */
-    public function dropIndex($tableName, $columns, $options = array())
+    public function dropIndex($tableName, $columns, $options = [])
     {
         return $this->getAdapter()->dropIndex($tableName, $columns, $options);
     }
@@ -476,7 +446,7 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     /**
      * {@inheritdoc}
      */
-    public function createDatabase($name, $options = array())
+    public function createDatabase($name, $options = [])
     {
         return $this->getAdapter()->createDatabase($name, $options);
     }
@@ -495,13 +465,5 @@ abstract class AdapterWrapper implements AdapterInterface, WrapperInterface
     public function dropDatabase($name)
     {
         return $this->getAdapter()->dropDatabase($name);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function castToBool($value)
-    {
-        return $this->getAdapter()->castToBool($value);
     }
 }

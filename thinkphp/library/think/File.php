@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2017 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -11,6 +11,7 @@
 
 namespace think;
 
+use SplFileInfo;
 use SplFileObject;
 
 class File extends SplFileObject
@@ -38,7 +39,7 @@ class File extends SplFileObject
     public function __construct($filename, $mode = 'r')
     {
         parent::__construct($filename, $mode);
-        $this->filename = $this->getRealPath() ?: $this->getPathname();
+        $this->filename = $this->getRealPath();
     }
 
     /**
@@ -94,16 +95,27 @@ class File extends SplFileObject
     }
 
     /**
-     * 获取文件的哈希散列值
-     * @param string $type
-     * @return mixed $string
+     * 获取文件的md5散列值
+     * @return $this
      */
-    public function hash($type = 'sha1')
+    public function md5()
     {
-        if (!isset($this->hash[$type])) {
-            $this->hash[$type] = hash_file($type, $this->filename);
+        if (!isset($this->hash['md5'])) {
+            $this->hash['md5'] = md5_file($this->filename);
         }
-        return $this->hash[$type];
+        return $this->hash['md5'];
+    }
+
+    /**
+     * 获取文件的sha1散列值
+     * @return $this
+     */
+    public function sha1()
+    {
+        if (!isset($this->hash['sha1'])) {
+            $this->hash['sha1'] = sha1_file($this->filename);
+        }
+        return $this->hash['sha1'];
     }
 
     /**
@@ -230,7 +242,7 @@ class File extends SplFileObject
     {
         $extension = strtolower(pathinfo($this->getInfo('name'), PATHINFO_EXTENSION));
         /* 对图像文件进行严格检测 */
-        if (in_array($extension, ['gif', 'jpg', 'jpeg', 'bmp', 'png', 'swf']) && !in_array($this->getImageType($this->filename), [1, 2, 3, 4, 6, 13])) {
+        if (in_array($extension, ['gif', 'jpg', 'jpeg', 'bmp', 'png', 'swf']) && !in_array($this->getImageType($this->filename), [1, 2, 3, 4, 6])) {
             return false;
         }
         return true;
@@ -242,12 +254,8 @@ class File extends SplFileObject
         if (function_exists('exif_imagetype')) {
             return exif_imagetype($image);
         } else {
-            try {
-                $info = getimagesize($image);
-                return $info ? $info[2] : false;
-            } catch (\Exception $e) {
-                return false;
-            }
+            $info = getimagesize($image);
+            return $info[2];
         }
     }
 
@@ -285,7 +293,7 @@ class File extends SplFileObject
      * @param  string           $path    保存路径
      * @param  string|bool      $savename    保存的文件名 默认自动生成
      * @param  boolean          $replace 同名文件是否覆盖
-     * @return false|File false-失败 否则返回File实例
+     * @return false|SplFileInfo false-失败 否则返回SplFileInfo实例
      */
     public function move($path, $savename = true, $replace = true)
     {
@@ -348,18 +356,19 @@ class File extends SplFileObject
                 $savename = call_user_func_array($this->rule, [$this]);
             } else {
                 switch ($this->rule) {
+                    case 'md5':
+                        $md5      = md5_file($this->filename);
+                        $savename = substr($md5, 0, 2) . DS . substr($md5, 2);
+                        break;
+                    case 'sha1':
+                        $sha1     = sha1_file($this->filename);
+                        $savename = substr($sha1, 0, 2) . DS . substr($sha1, 2);
+                        break;
                     case 'date':
                         $savename = date('Ymd') . DS . md5(microtime(true));
                         break;
                     default:
-                        if (in_array($this->rule, hash_algos())) {
-                            $hash     = $this->hash($this->rule);
-                            $savename = substr($hash, 0, 2) . DS . substr($hash, 2);
-                        } elseif (is_callable($this->rule)) {
-                            $savename = call_user_func($this->rule);
-                        } else {
-                            $savename = date('Ymd') . DS . md5(microtime(true));
-                        }
+                        $savename = call_user_func($this->rule);
                 }
             }
         } elseif ('' === $savename) {
@@ -406,10 +415,5 @@ class File extends SplFileObject
     public function getError()
     {
         return $this->error;
-    }
-
-    public function __call($method, $args)
-    {
-        return $this->hash($method);
     }
 }

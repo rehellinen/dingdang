@@ -20,8 +20,8 @@ class Model extends Make
     protected function configure()
     {
         parent::configure();
-        $this->setName('make:common')
-            ->setDescription('Create a new common class');
+        $this->setName('make:model')
+            ->setDescription('Create a new model class');
     }
 
     protected function getStub()

@@ -28,8 +28,7 @@
  */
 namespace Phinx\Db\Adapter;
 
-use think\console\Input as InputInterface;
-use think\console\Output as OutputInterface;
+use think\console\Output;
 use Phinx\Db\Table;
 use Phinx\Db\Table\Column;
 use Phinx\Migration\MigrationInterface;
@@ -47,12 +46,7 @@ abstract class PdoAdapter implements AdapterInterface
     protected $options = array();
 
     /**
-     * @var InputInterface
-     */
-    protected $input;
-
-    /**
-     * @var OutputInterface
+     * @var Output
      */
     protected $output;
 
@@ -75,15 +69,11 @@ abstract class PdoAdapter implements AdapterInterface
      * Class Constructor.
      *
      * @param array $options Options
-     * @param InputInterface $input Input Interface
-     * @param OutputInterface $output Output Interface
+     * @param Output $output Output Interface
      */
-    public function __construct(array $options, InputInterface $input = null, OutputInterface $output = null)
+    public function __construct(array $options, Output $output = null)
     {
         $this->setOptions($options);
-        if (null !== $input) {
-            $this->setInput($input);
-        }
         if (null !== $output) {
             $this->setOutput($output);
         }
@@ -129,7 +119,7 @@ abstract class PdoAdapter implements AdapterInterface
     public function getOption($name)
     {
         if (!$this->hasOption($name)) {
-            return;
+            return null;
         }
         return $this->options[$name];
     }
@@ -137,24 +127,7 @@ abstract class PdoAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function setInput(InputInterface $input)
-    {
-        $this->input = $input;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getInput()
-    {
-        return $this->input;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setOutput(OutputInterface $output)
+    public function setOutput(Output $output)
     {
         $this->output = $output;
         return $this;
@@ -166,7 +139,7 @@ abstract class PdoAdapter implements AdapterInterface
     public function getOutput()
     {
         if (null === $this->output) {
-            $output = new OutputInterface('nothing');
+            $output = new Output('nothing');
             $this->setOutput($output);
         }
         return $this->output;
@@ -211,14 +184,9 @@ abstract class PdoAdapter implements AdapterInterface
             $table = new Table($this->getSchemaTableName(), array(), $this);
             if (!$table->hasColumn('migration_name')) {
                 $table
-                    ->addColumn('migration_name', 'string',
+                    ->addColumn('migration_name', 'string', 
                         array('limit' => 100, 'after' => 'version', 'default' => null, 'null' => true)
                     )
-                    ->save();
-            }
-            if (!$table->hasColumn('breakpoint')) {
-                $table
-                    ->addColumn('breakpoint', 'boolean', array('default' => false))
                     ->save();
             }
         }
@@ -280,7 +248,7 @@ abstract class PdoAdapter implements AdapterInterface
     public function endCommandTimer()
     {
         $end = microtime(true);
-        if (OutputInterface::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity()) {
+        if (Output::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity()) {
             $this->getOutput()->writeln('    -> ' . sprintf('%.4fs', $end - $this->getCommandStartTime()));
         }
     }
@@ -294,7 +262,7 @@ abstract class PdoAdapter implements AdapterInterface
      */
     public function writeCommand($command, $args = array())
     {
-        if (OutputInterface::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity()) {
+        if (Output::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity()) {
             if (count($args)) {
                 $outArr = array();
                 foreach ($args as $arg) {
@@ -421,27 +389,27 @@ abstract class PdoAdapter implements AdapterInterface
         if (strcasecmp($direction, MigrationInterface::UP) === 0) {
             // up
             $sql = sprintf(
-                "INSERT INTO %s (%s, %s, %s, %s, %s) VALUES ('%s', '%s', '%s', '%s', %s);",
+                'INSERT INTO %s ('
+                . 'version, migration_name, start_time, end_time'
+                . ') VALUES ('
+                . '\'%s\','
+                . '\'%s\','
+                . '\'%s\','
+                . '\'%s\''
+                . ');',
                 $this->getSchemaTableName(),
-                $this->quoteColumnName('version'),
-                $this->quoteColumnName('migration_name'),
-                $this->quoteColumnName('start_time'),
-                $this->quoteColumnName('end_time'),
-                $this->quoteColumnName('breakpoint'),
                 $migration->getVersion(),
                 substr($migration->getName(), 0, 100),
                 $startTime,
-                $endTime,
-                $this->castToBool(false)
+                $endTime
             );
 
             $this->query($sql);
         } else {
             // down
             $sql = sprintf(
-                "DELETE FROM %s WHERE %s = '%s'",
+                "DELETE FROM %s WHERE version = '%s'",
                 $this->getSchemaTableName(),
-                $this->quoteColumnName('version'),
                 $migration->getVersion()
             );
 
@@ -449,41 +417,6 @@ abstract class PdoAdapter implements AdapterInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function toggleBreakpoint(MigrationInterface $migration)
-    {
-        $this->query(
-            sprintf(
-                'UPDATE %1$s SET %2$s = CASE %2$s WHEN %3$s THEN %4$s ELSE %3$s END WHERE %5$s = \'%6$s\';',
-                $this->getSchemaTableName(),
-                $this->quoteColumnName('breakpoint'),
-                $this->castToBool(true),
-                $this->castToBool(false),
-                $this->quoteColumnName('version'),
-                $migration->getVersion()
-            )
-        );
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function resetAllBreakpoints()
-    {
-        return $this->execute(
-            sprintf(
-                'UPDATE %1$s SET %2$s = %3$s WHERE %2$s <> %3$s;',
-                $this->getSchemaTableName(),
-                $this->quoteColumnName('breakpoint'),
-                $this->castToBool(false)
-            )
-        );
     }
 
     /**
@@ -513,14 +446,12 @@ abstract class PdoAdapter implements AdapterInterface
                       ->addColumn('migration_name', 'string', array('limit' => 100, 'default' => null, 'null' => true))
                       ->addColumn('start_time', 'timestamp', array('default' => 'CURRENT_TIMESTAMP'))
                       ->addColumn('end_time', 'timestamp', array('default' => 'CURRENT_TIMESTAMP'))
-                      ->addColumn('breakpoint', 'boolean', array('default' => false))
                       ->save();
             } else {
                 $table->addColumn('version', 'biginteger')
                       ->addColumn('migration_name', 'string', array('limit' => 100, 'default' => null, 'null' => true))
                       ->addColumn('start_time', 'timestamp')
                       ->addColumn('end_time', 'timestamp')
-                      ->addColumn('breakpoint', 'boolean', array('default' => false))
                       ->save();
             }
         } catch (\Exception $exception) {
@@ -555,7 +486,6 @@ abstract class PdoAdapter implements AdapterInterface
             'date',
             'blob',
             'binary',
-            'varbinary',
             'boolean',
             'uuid',
             // Geospatial data types
@@ -571,17 +501,5 @@ abstract class PdoAdapter implements AdapterInterface
      */
     public function isValidColumnType(Column $column) {
         return in_array($column->getType(), $this->getColumnTypes());
-    }
-
-    /**
-     * Cast a value to a boolean appropriate for the adapter.
-     *
-     * @param mixed $value The value to be cast
-     *
-     * @return mixed
-     */
-    public function castToBool($value)
-    {
-        return (bool) $value ? 1 : 0;
     }
 }

@@ -28,6 +28,8 @@
  */
 namespace Phinx\Db\Adapter;
 
+use Phinx\Db\Adapter\AdapterInterface;
+
 /**
  * Adapter factory and registry.
  *
@@ -89,7 +91,7 @@ class AdapterFactory
     {
         if (!is_subclass_of($class, 'Phinx\Db\Adapter\AdapterInterface')) {
             throw new \RuntimeException(sprintf(
-                'Adapter class "%s" must implement Phinx\\Db\\Adapter\\AdapterInterface',
+                'Adapter class "%s" must be implement Phinx\\Db\\Adapter\\AdapterInterface',
                 $class
             ));
         }

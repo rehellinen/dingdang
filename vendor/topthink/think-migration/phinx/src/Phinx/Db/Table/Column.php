@@ -113,7 +113,7 @@ class Column
      * Sets the column name.
      *
      * @param string $name
-     * @return $this
+     * @return Column
      */
     public function setName($name)
     {
@@ -135,7 +135,7 @@ class Column
      * Sets the column type.
      *
      * @param string $type
-     * @return $this
+     * @return Column
      */
     public function setType($type)
     {
@@ -157,7 +157,7 @@ class Column
      * Sets the column limit.
      *
      * @param integer $limit
-     * @return $this
+     * @return Column
      */
     public function setLimit($limit)
     {
@@ -179,7 +179,7 @@ class Column
      * Sets whether the column allows nulls.
      *
      * @param boolean $null
-     * @return $this
+     * @return Column
      */
     public function setNull($null)
     {
@@ -211,7 +211,7 @@ class Column
      * Sets the default column value.
      *
      * @param mixed $default
-     * @return $this
+     * @return Column
      */
     public function setDefault($default)
     {
@@ -233,7 +233,7 @@ class Column
      * Sets whether or not the column is an identity column.
      *
      * @param boolean $identity
-     * @return $this
+     * @return Column
      */
     public function setIdentity($identity)
     {
@@ -265,7 +265,7 @@ class Column
      * Sets the name of the column to add this column after.
      *
      * @param string $after After
-     * @return $this
+     * @return Column
      */
     public function setAfter($after)
     {
@@ -287,7 +287,7 @@ class Column
      * Sets the 'ON UPDATE' mysql column function.
      *
      * @param  string $update On Update function
-     * @return $this
+     * @return Column
      */
     public function setUpdate($update)
     {
@@ -309,7 +309,7 @@ class Column
      * Sets the column precision for decimal.
      *
      * @param integer $precision
-     * @return $this
+     * @return Column
      */
     public function setPrecision($precision)
     {
@@ -331,7 +331,7 @@ class Column
      * Sets the column scale for decimal.
      *
      * @param integer $scale
-     * @return $this
+     * @return Column
      */
     public function setScale($scale)
     {
@@ -353,7 +353,7 @@ class Column
      * Sets the column comment.
      *
      * @param string $comment
-     * @return $this
+     * @return Column
      */
     public function setComment($comment)
     {
@@ -375,7 +375,7 @@ class Column
      * Sets whether field should be signed.
      *
      * @param bool $signed
-     * @return $this
+     * @return Column
      */
     public function setSigned($signed)
     {
@@ -408,7 +408,7 @@ class Column
      * Used for date/time columns only!
      *
      * @param bool $timezone
-     * @return $this
+     * @return Column
      */
     public function setTimezone($timezone)
     {
@@ -441,7 +441,7 @@ class Column
      *
      * @param array $properties
      *
-     * @return $this
+     * @return Column
      */
     public function setProperties($properties)
     {
@@ -464,7 +464,7 @@ class Column
      *
      * @param mixed (array|string) $values
      *
-     * @return $this
+     * @return Column
      */
     public function setValues($values)
     {
@@ -525,7 +525,7 @@ class Column
      * Utility method that maps an array of column options to this objects methods.
      *
      * @param array $options Options
-     * @return $this
+     * @return Column
      */
     public function setOptions($options)
     {
@@ -538,13 +538,12 @@ class Column
                 $option = $aliasOptions[$option];
             }
 
-            if (!in_array($option, $validOptions, true)) {
+            if (!in_array($option, $validOptions)) {
                 throw new \RuntimeException(sprintf('"%s" is not a valid column option.', $option));
             }
 
             $method = 'set' . ucfirst($option);
             $this->$method($value);
         }
-        return $this;
     }
 }

@@ -30,8 +30,7 @@ namespace Phinx\Migration;
 
 use Phinx\Db\Table;
 use Phinx\Db\Adapter\AdapterInterface;
-use think\console\Input as InputInterface;
-use think\console\Output as OutputInterface;
+use think\console\Output;
 
 /**
  * Abstract Migration Class.
@@ -56,32 +55,18 @@ abstract class AbstractMigration implements MigrationInterface
     protected $adapter;
 
     /**
-     * @var OutputInterface
+     * @var Output
      */
     protected $output;
-
-    /**
-     * @var InputInterface
-     */
-    protected $input;
 
     /**
      * Class Constructor.
      *
      * @param int $version Migration Version
-     * @param InputInterface|null $input
-     * @param OutputInterface|null $output
      */
-    final public function __construct($version, InputInterface $input = null, OutputInterface $output = null)
+    final public function __construct($version)
     {
         $this->version = $version;
-        if (!is_null($input)){
-            $this->setInput($input);
-        }
-        if (!is_null($output)){
-            $this->setOutput($output);
-        }
-
         $this->init();
     }
 
@@ -128,24 +113,7 @@ abstract class AbstractMigration implements MigrationInterface
     /**
      * {@inheritdoc}
      */
-    public function setInput(InputInterface $input)
-    {
-        $this->input = $input;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getInput()
-    {
-        return $this->input;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setOutput(OutputInterface $output)
+    public function setOutput(Output $output)
     {
         $this->output = $output;
         return $this;

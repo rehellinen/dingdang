@@ -30,8 +30,7 @@ namespace Phinx\Migration;
 
 use Phinx\Db\Adapter\AdapterInterface;
 use Phinx\Db\Table;
-use think\console\Input as InputInterface;
-use think\console\Output as OutputInterface;
+use think\console\Output;
 
 /**
  * Migration interface
@@ -85,32 +84,17 @@ interface MigrationInterface
     public function getAdapter();
 
     /**
-     * Sets the input object to be used in migration object
-     *
-     * @param InputInterface $input
-     * @return MigrationInterface
-     */
-    public function setInput(InputInterface $input);
-
-    /**
-     * Gets the input object to be used in migration object
-     *
-     * @return InputInterface
-     */
-    public function getInput();
-
-    /**
      * Sets the output object to be used in migration object
      *
-     * @param OutputInterface $output
+     * @param Output $output
      * @return MigrationInterface
      */
-    public function setOutput(OutputInterface $output);
+    public function setOutput(Output $output);
 
     /**
      * Gets the output object to be used in migration object
      *
-     * @return OutputInterface
+     * @return Output
      */
     public function getOutput();
 
