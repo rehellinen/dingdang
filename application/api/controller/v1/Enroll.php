@@ -16,6 +16,7 @@ use think\Controller;
 use think\Exception;
 use think\Request;
 use app\common\validate\Enroll as EnrollValidate;
+use app\common\common\Enroll as EnrollModel;
 
 class Enroll extends Controller
 {
@@ -28,9 +29,9 @@ class Enroll extends Controller
         $uid = (new Token())->getVarsByToken('uid');
         $data['user_id'] = $uid;
 
-        $isExist = model('Enroll')->where($data)->find();
+        $isExist = (new EnrollModel())->where($data)->find();
         if(!$isExist){
-            $res = model('Enroll')->save($data);
+            $res = (new EnrollModel())->save($data);
 
             if(!$res) {
                 throw new Exception();
@@ -56,10 +57,10 @@ class Enroll extends Controller
         $uid = (new Token())->getVarsByToken('uid');
         $data['user_id'] = $uid;
 
-        $isExisted = model('Enroll')->where($data)->find();
+        $isExisted = (new EnrollModel())->where($data)->find();
 
         if($isExisted){
-            $res = model('Enroll')->where($data)->update(['status' => -1]);
+            $res = (new EnrollModel())->where($data)->update(['status' => -1]);
             if(!$res) {
                 throw new Exception();
             } else {
@@ -84,7 +85,7 @@ class Enroll extends Controller
         $uid = (new Token())->getVarsByToken('uid');
         $data['user_id'] = $uid;
 
-        $res = model('Enroll')->where($data)->find();
+        $res = (new EnrollModel())->where($data)->find();
 
         if(!$res) {
             throw new EnrollException([
@@ -107,7 +108,7 @@ class Enroll extends Controller
         $uid = (new Token())->getVarsByToken('uid');
         $data['user_id'] = $uid;
 
-        $res = model('Enroll')->where($data)->select();
+        $res = (new EnrollModel())->where($data)->select();
 
         if(!$res) {
             throw new EnrollException([

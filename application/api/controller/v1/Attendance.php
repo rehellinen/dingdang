@@ -14,6 +14,7 @@ use app\common\exception\SuccessException;
 use think\Controller;
 use app\common\validate\Attendance as AttendanceValidate;
 use app\common\service\Token;
+use app\common\common\Attendance as AttendanceModel;
 
 class Attendance extends Controller
 {
@@ -26,8 +27,8 @@ class Attendance extends Controller
         $uid = (new Token())->getVarsByToken('uid');
         $data['user_id'] = $uid;
 
-        if(!model('Attendance')->where($data)->find()){
-            $res = model('Attendance')->save($data);
+        if(!(new AttendanceModel())->where($data)->find()){
+            $res =(new AttendanceModel())->save($data);
         }else{
             $res = null;
         }

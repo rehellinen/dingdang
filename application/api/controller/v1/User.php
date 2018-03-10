@@ -16,6 +16,7 @@ use app\common\service\Register;
 use app\common\service\Token;
 use app\common\validate\User as UserValidate;
 use think\Exception;
+use app\common\common\User as UserModel;
 
 class User extends Controller
 {
@@ -39,11 +40,12 @@ class User extends Controller
     {
         $uid = (new Token())->getVarsByToken('uid');
 
-        $res = model('User')->where('id='.$uid)->find();
+        $res = (new UserModel())->where('id='.$uid)->find();
 
         if($res){
             throw new SuccessException([
-                'message' => '获取成功'
+                'message' => '获取成功',
+                'data' => $res
             ]);
         }else{
             throw new Exception();

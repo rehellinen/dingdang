@@ -21,7 +21,7 @@ class Login extends Controller
     public function appLogin()
     {
         (new User())->goCheck('login');
-        $data = (new Api())->getDataByScene('login');
+        $data = (new User())->getDataByScene('login');
 
         // 判断用户是否存在、密码是否正确
         $loginService = new LoginService();

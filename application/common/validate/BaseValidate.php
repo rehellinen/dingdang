@@ -39,7 +39,6 @@ class BaseValidate extends Validate
     public function getDataByScene($scene)
     {
         $params = Request::instance()->param();
-
         $rule = $this->scene[$scene];
         $newData = array();
 

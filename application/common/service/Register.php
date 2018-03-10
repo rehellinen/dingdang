@@ -9,6 +9,7 @@
 namespace app\common\service;
 
 
+use app\common\common\User;
 use think\Exception;
 
 class Register
@@ -21,7 +22,7 @@ class Register
         $data['salt'] = $md5[0];
         $data['password'] = $md5[1];
 
-        $res = model('User')->save($data);
+        $res = (new User())->save($data);
         if(!$res) {
             throw new Exception();
         }
