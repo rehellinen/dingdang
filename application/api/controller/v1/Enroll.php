@@ -14,7 +14,6 @@ use app\common\exception\SuccessException;
 use app\common\service\Token;
 use think\Controller;
 use think\Exception;
-use think\Request;
 use app\common\validate\Enroll as EnrollValidate;
 use app\common\common\Enroll as EnrollModel;
 

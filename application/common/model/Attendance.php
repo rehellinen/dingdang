@@ -3,30 +3,24 @@
  * Created by PhpStorm.
  * User: rehellinen
  * Date: 2017/11/11
- * Time: 15:08
+ * Time: 15:04
  */
 
-namespace app\common\common;
+namespace app\common\model;
 
 
-class Enroll extends BaseModel
+class Attendance extends BaseModel
 {
-    public function getLectureIdAttr($value)
-    {
-        $lecture = new Lecture();
-        return $value = $lecture->find($value);
-    }
-
     public function getUserIdAttr($value)
     {
         $user = new User();
         return $user->find($value);
     }
 
-    public function getEnrollCount()
+    public function getLectureIdAttr($value)
     {
-        $condition['status'] = array('neq', -1);
-        return $this->where($condition)->count();
+        $lecture = new Lecture();
+        return $lecture->find($value);
     }
 
     public function getNotDelete()

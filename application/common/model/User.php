@@ -5,7 +5,7 @@
  * Date: 2017/11/11
  * Time: 13:10
  */
-namespace app\common\common;
+namespace app\common\model;
 
 class User extends BaseModel
 {

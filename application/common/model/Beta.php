@@ -6,7 +6,7 @@
  * Time: 20:59
  */
 
-namespace app\common\common;
+namespace app\common\model;
 
 
 class Beta extends BaseModel

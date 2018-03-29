@@ -7,8 +7,8 @@
  */
 namespace app\common\service;
 
-use app\common\common\User;
 use app\common\exception\UserException;
+use app\common\model\User;
 
 class Login
 {
@@ -58,8 +58,7 @@ class Login
 
     private function comparePassword($user, $appPassword)
     {
-        $md5Password = md5(config('setting.md5_pre') . $appPassword . $user['salt']);
-
+        $md5Password = md5(config('md5_pre') . $appPassword . $user['salt']);
         if($md5Password == $user['password']) {
             return true;
         } else {

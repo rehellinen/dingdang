@@ -6,7 +6,7 @@
  * Time: 14:58
  */
 
-namespace app\common\common;
+namespace app\common\model;
 
 
 class Place extends BaseModel

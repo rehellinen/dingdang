@@ -6,7 +6,7 @@
  * Time: 14:41
  */
 
-namespace app\common\common;
+namespace app\common\model;
 
 
 class Lecture extends BaseModel

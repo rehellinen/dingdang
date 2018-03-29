@@ -22,7 +22,7 @@ Token令牌均放在header中
     获取用户信息
 9.  post    api/:version/user
     注册
-10. get     api/:version/enroll/:id/:status
+10. get     api/:version/enroll/:lecture_id/:status
     根据id获取讲座 / 收藏的信息
 11. get     api/:version/enroll/:status
     获取一个用户所以讲座 / 收藏的信息
