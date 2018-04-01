@@ -15,12 +15,13 @@ use app\common\service\Token;
 use think\Controller;
 use think\Exception;
 use app\common\validate\Enroll as EnrollValidate;
-use app\common\common\Enroll as EnrollModel;
+use app\common\model\Enroll as EnrollModel;
 
 class Enroll extends Controller
 {
     public function enroll()
     {
+//        print_r($_POST);exit;
         $validate = (new EnrollValidate);
         $validate->goCheck('enroll');
 

@@ -4,7 +4,7 @@ namespace app\api\controller\v1;
 use think\Controller;
 use app\common\exception\LectureException;
 use app\common\exception\SuccessException;
-use app\common\common\Lecture as LectureModel;
+use app\common\model\Lecture as LectureModel;
 
 /**
  * Created by PhpStorm.

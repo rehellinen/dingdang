@@ -88,6 +88,11 @@ class BaseController extends Controller
     {
         $post = Request::instance()->post();
         if($post){
+            if($post['photo_url']){
+                $pattern = '{upload.+}';
+                preg_match($pattern, $post['photo_url'], $match);
+                $post['photo_url'] = $match[0];
+            }
             // 校验数据
             $controller = Request::instance()->controller();
             $validate = validate($controller);

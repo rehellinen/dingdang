@@ -14,7 +14,7 @@ use app\common\exception\SuccessException;
 use think\Controller;
 use app\common\validate\Attendance as AttendanceValidate;
 use app\common\service\Token;
-use app\common\common\Attendance as AttendanceModel;
+use app\common\model\Attendance as AttendanceModel;
 
 class Attendance extends Controller
 {

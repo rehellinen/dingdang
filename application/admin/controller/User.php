@@ -8,11 +8,7 @@
 
 namespace app\admin\controller;
 
-
-use app\common\service\Register;
-use app\common\validate\Api;
 use think\Loader;
-use think\Request;
 
 class User extends BaseController
 {

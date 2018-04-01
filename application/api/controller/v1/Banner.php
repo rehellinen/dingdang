@@ -12,7 +12,7 @@ namespace app\api\controller\v1;
 use app\common\exception\BannerException;
 use app\common\exception\SuccessException;
 use think\Controller;
-use app\common\common\Banner as BannerModel;
+use app\common\model\Banner as BannerModel;
 
 class Banner extends Controller
 {

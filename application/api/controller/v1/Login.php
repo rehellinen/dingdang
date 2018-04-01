@@ -11,7 +11,6 @@ namespace app\api\controller\v1;
 
 use app\common\exception\SuccessException;
 use think\Controller;
-use app\common\validate\Api;
 use app\common\service\Login as LoginService;
 use app\common\service\Token as TokenService;
 use app\common\validate\User;

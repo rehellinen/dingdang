@@ -10,13 +10,12 @@ namespace app\api\controller\v1;
 
 
 use app\common\exception\SuccessException;
-use app\common\exception\UserException;
 use think\Controller;
 use app\common\service\Register;
 use app\common\service\Token;
 use app\common\validate\User as UserValidate;
 use think\Exception;
-use app\common\common\User as UserModel;
+use app\common\model\User as UserModel;
 
 class User extends Controller
 {

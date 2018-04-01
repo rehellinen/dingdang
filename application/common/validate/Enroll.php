@@ -14,7 +14,7 @@ class Enroll extends BaseValidate
     protected $rule = [
         ['user_id', 'require', 'user_id不能为空'],
         ['lecture_id', 'require', 'lecture_id不能为空'],
-        ['status', 'require', 'lecture_id不能为空']
+        ['status', 'require', 'status不能为空']
     ];
 
     protected $scene = [
