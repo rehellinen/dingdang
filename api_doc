@@ -1,4 +1,4 @@
-baseUrl: rehellinen.cn/project/dingdang/public
+baseUrl: https://20298479.rehellinen.cn/dingdang/public
 :version 为api版本号，目前为v1;
 :status 0为讲座，1为活动
 Token令牌均放在header中
@@ -6,25 +6,34 @@ Token令牌均放在header中
 
 1.  get     /api/:version/banner
     获取轮播图
+
 2.  post    /api/:version/Attendance
     签到
+
 3.  post    /api/:version/enroll
     预报名
+    get     api/:version/enroll/:lecture_id/:status
+    获取某用户某一讲座 / 收藏的信息
+    get     api/:version/enroll/:status
+    获取某用户所有讲座 / 收藏的信息
+    delete  api/:version/enroll/:lecture_id/:status
+    取消讲座 / 收藏
+
 4.  get     api/:version/allLectures
     获取所有讲座信息
-5.  get     api/:version/allActivities
+    get     api/:version/allActivities
     获取所有活动信息
-6.  get     api/:version/activity/:id
+    get     api/:version/activity/:id
     根据id获取讲座
-7.  post    api/:version/login
+
+5.  post    api/:version/login
     登录
-8.  get     api/:version/user
+
+6.  get     api/:version/user
     获取用户信息
-9.  post    api/:version/user
+    post    api/:version/user
     注册
-10. get     api/:version/enroll/:lecture_id/:status
-    根据id获取讲座 / 收藏的信息
-11. get     api/:version/enroll/:status
-    获取一个用户所以讲座 / 收藏的信息
-12. get     api/:version/token/check
+
+
+7.  get     api/:version/token/check
     检查Token令牌是否过期

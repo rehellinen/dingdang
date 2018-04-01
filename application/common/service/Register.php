@@ -9,7 +9,7 @@
 namespace app\common\service;
 
 
-use app\common\common\User;
+use app\common\model\User;
 use think\Exception;
 
 class Register

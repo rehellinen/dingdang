@@ -21,7 +21,7 @@ Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
 Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
 Route::get('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/isEnroll');
 Route::get('api/:version/enroll/:status', 'api/:version.Enroll/getEnroll');
-Route::get('api/:version/enroll/:lecture_id/:status/cancel', 'api/:version.Enroll/cancelEnroll');
+Route::delete('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/cancelEnroll');
 
 
 // 讲座
