@@ -11,7 +11,7 @@ namespace app\common\exception;
 
 class AttendanceException extends BaseException
 {
-    public $httpCode = 200;
+    public $httpCode = 400;
     public $message = '签到失败';
     public $status= 80000;
 }

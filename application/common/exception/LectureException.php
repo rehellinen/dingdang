@@ -12,7 +12,7 @@ namespace app\common\exception;
 class LectureException extends BaseException
 {
 
-    public $httpCode = 200;
+    public $httpCode = 404;
     public $message = '获取讲座信息失败';
     public $status= 30000;
 }

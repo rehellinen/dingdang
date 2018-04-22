@@ -18,7 +18,7 @@ use think\console\input\Option;
 class Controller extends Make
 {
 
-    protected $type = "Controller";
+    protected $type = "controller";
 
     protected function configure()
     {

@@ -9,5 +9,5 @@
 return [
     'md5_pre' => 'rehellinen',
     'token_time' => 18000,
-    'banner_max_count' => 5
+    'banner_max_count' => 5,
 ];
