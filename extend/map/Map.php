@@ -24,7 +24,7 @@ class Map
 
         $res = json_decode(curl_http($url, 0), true);
 
-        if(!array_key_exists('location', $res['result'])){
+        if(!array_key_exists('result', $res)){
             throw new LectureException([
                 'message' => '讲座地点不够详细，无法获取经纬度'
             ]);

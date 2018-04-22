@@ -31,11 +31,14 @@ class Attendance extends Controller
 
         $uid = (new Token())->getVarsByToken('uid');
         $data['user_id'] = $uid;
-
+        unset($data['lat']);
+        unset($data['lng']);
         if(!(new AttendanceModel())->where($data)->find()){
             $res =(new AttendanceModel())->save($data);
         }else{
-            $res = null;
+            throw new AttendanceException([
+                'message' => '已经成功签到，不用再次签到'
+            ]);
         }
 
         if(!$res) {
@@ -63,14 +66,7 @@ class Attendance extends Controller
         $place = $lecture->place_id->name;
 
         $res = Map::getLatLngByAddress($place);
-        $placeLat = $res['lat'];
-        $placeLng = $res['lng'];
-
-        if(1){
-            return true;
-        }else{
-            throw new AttendanceException();
-        }
+        $this->checkDistance($lat, $res['lat'], $lng, $res['lng']);
     }
 
     private function checkDistance($lat1, $lat2, $lng1, $lng2)
@@ -86,22 +82,20 @@ class Attendance extends Controller
         $radLat2 = $this->rad($lat2);
         $a = $radLat1 - $radLat2;
         $b = $this->rad($lng1) - $this->rad($lng2);
-        var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
-        s = s * 6378.137;
+        $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
+        $s = $s * 6378.137;
         // EARTH_RADIUS; 单位Km
-        s = Math.round(s * 10000) / 10000;
+        $s = round($s * 10000) / 10000;
 
         // 整理显示方式
-        var result = s * 1000;
-        if (result < 1000) {
-            result = (parseInt(result / 100) + 1) * 100 + "米以内";
-        } else if (result < 20000) {
-            result = (parseInt(result / 1000) + 1) + "公里以内";
-        } else {
-            result = "20公里以外"
+        $result = $s * 1000;
+        if ($result > 2000) {
+            throw new AttendanceException([
+                'message' => '地点相距太远'
+            ]);
+        }else{
+            return true;
         }
-
-        return result;
     }
 
     private function rad($d)

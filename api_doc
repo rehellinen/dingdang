@@ -34,6 +34,5 @@ Token令牌均放在header中
     post    api/:version/user
     注册
 
-
 7.  get     api/:version/token/check
     检查Token令牌是否过期
