@@ -14,10 +14,12 @@ class Attendance extends BaseValidate
     protected $rule = [
         ['user_id', 'number'],
         ['lecture_id', 'require|number'],
+        ['lat', 'require|number'],
+        ['lng', 'require|number'],
         ['address', 'require']
     ];
 
     protected $scene = [
-        'signIn' => ['lecture_id', 'address']
+        'signIn' => ['lecture_id', 'lat', 'lng']
     ];
 }

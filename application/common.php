@@ -47,3 +47,27 @@ function getLectureType($status)
         return '出错';
     }
 }
+
+/**
+ * @param string $url url地址
+ * @param int $type 0为get，1为post
+ * @param array $data post参数
+ * @return mixed
+ */
+function curl_http($url, $type, $data=[])
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+
+    // 处理POST的情况
+    if ($type == 1){
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    }
+    $content = curl_exec($ch);
+    curl_close($ch);
+    return $content;
+}
