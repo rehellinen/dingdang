@@ -21,7 +21,6 @@ class Enroll extends Controller
 {
     public function enroll()
     {
-//        print_r($_POST);exit;
         $validate = (new EnrollValidate);
         $validate->goCheck('enroll');
 

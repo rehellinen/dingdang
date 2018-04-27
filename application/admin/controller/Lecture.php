@@ -26,6 +26,8 @@ class Lecture extends BaseController
     public function add()
     {
         $place = model('Place')->getNotDelete();
+        $place = $place->toArray();
+        $place = $place['data'];
         $this->assign('place', $place);
         return parent::add();
     }
@@ -33,6 +35,8 @@ class Lecture extends BaseController
     public function edit()
     {
         $place = model('Place')->getNotDelete();
+        $place = $place->toArray();
+        $place = $place['data'];
         $this->assign('place', $place);
         return parent::edit();
     }

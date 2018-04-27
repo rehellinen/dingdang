@@ -1,6 +1,5 @@
 baseUrl: https://20298479.rehellinen.cn/dingdang/public
 :version 为api版本号，目前为v1;
-:status 0为讲座，1为活动
 Token令牌均放在header中
 例如：/api/v1/banner
 
@@ -9,15 +8,42 @@ Token令牌均放在header中
 
 2.  post    /api/:version/Attendance
     签到
+    POST参数：
+    (1) lecture_id   讲座ID
+    (2) lat   经度
+    (3) lng   纬度
+    HEADER参数:
+    token
 
 3.  post    /api/:version/enroll
-    预报名
+    预报名 / 收藏
+    POST参数：
+    (1) status   0为讲座，1为活动
+    (2) lecture_id   讲座ID
+    HEADER参数:
+    token
+
     get     api/:version/enroll/:lecture_id/:status
     获取某用户某一讲座 / 收藏的信息
+    URL参数：
+    (1) lecture_id   讲座ID
+    (2) status   0代表报名，1代表收藏
+    HEADER参数:
+    token
+
     get     api/:version/enroll/:status
     获取某用户所有讲座 / 收藏的信息
+    (1) status   0为讲座，1为活动
+    HEADER参数:
+    token
+
     delete  api/:version/enroll/:lecture_id/:status
     取消讲座 / 收藏
+    URL参数：
+    (1) lecture_id   讲座ID
+    (2) status   0代表报名，1代表收藏
+    HEADER参数:
+    token
 
 4.  get     api/:version/allLectures
     获取所有讲座信息
@@ -28,11 +54,19 @@ Token令牌均放在header中
 
 5.  post    api/:version/login
     登录
+    (1) telephone
+    (2) password
 
 6.  get     api/:version/user
     获取用户信息
     post    api/:version/user
     注册
+    (1) telephone
+    (2) number
+    (3) password
+    (4) name
 
 7.  get     api/:version/token/check
     检查Token令牌是否过期
+    HEADER参数:
+    token

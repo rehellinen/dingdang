@@ -15,9 +15,13 @@ class Place extends BaseController
     public function index()
     {
         $place = Loader::model('Place')->getNotDelete();
+        $page = $place->render();
+        $place = $place->toArray();
+        $place = $place['data'];
 
         return $this->fetch('', [
-            'place' => $place
+            'place' => $place,
+            'page' => $page
         ]);
     }
 }
