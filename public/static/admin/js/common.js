@@ -9,10 +9,10 @@ $('#submitButton').click(function () {
         postData[this.name] = this.value;
     });
     $.post(URL.submit_url, postData, function (result) {
-        if(result.status===1){
+        if(result.status === 1){
             dialog.success(result.message, URL.success_url);
         }
-        if(result.status===0){
+        if(result.status === 0 || result.status === 10000){
             dialog.error(result.message);
         }
     },"JSON");

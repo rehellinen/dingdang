@@ -21,11 +21,14 @@ class Lecture extends BaseModel
         return $value = $place->find($value);
     }
 
-    public function getNotDelete()
+    public function getNotDelete($path = '')
     {
         $condition['status'] = array('neq', -1);
         return $this->where($condition)->order('id desc')
-                ->paginate(15);
+                ->paginate([
+                    'list_rows' => 15,
+                    'path' => 'index'
+                    ]);
     }
 
     public function getPhotoUrlAttr($value)

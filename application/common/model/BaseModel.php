@@ -19,10 +19,12 @@ class BaseModel extends Model
         return $this->where('id='.$id)->update($data);
     }
 
-    public function getNotDelete()
+    public function getNotDelete($path = '')
     {
         $condition['status'] = array('neq', -1);
-        return $this->where($condition)->order('id desc')->paginate(10);
+        return $this->where($condition)->order('id desc')->paginate(
+            10 ,false, ['path' => $path]
+        );
     }
 
     public function getById($id)
