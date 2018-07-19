@@ -23,7 +23,7 @@ class Attendance extends BaseModel
         return $lecture->find($value);
     }
 
-    public function getNotDelete()
+    public function getNotDelete($path = '')
     {
         $condition['status'] = array('neq', -1);
         return $this->where($condition)->order('id desc')->paginate(15);

@@ -9,7 +9,7 @@
 return [
     'view_replace_str'       => [
         '__STATIC__' => '/dingdang/public/static',
-        '__URL__' => '/dingdang/public/Index.php?s='
+        '__URL__' => '/dingdang/public'
     ],
     'img_url' => 'http://localhost/dingdang/public/'
 ];

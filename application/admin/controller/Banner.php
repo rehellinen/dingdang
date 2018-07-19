@@ -14,7 +14,7 @@ class Banner extends BaseController
     public function index()
     {
         $banner = model('Banner')->where('status=1')->paginate(
-            15, false, ['path' => 'index']
+            15, false, ['path' => '']
         );
 //        print_r($banner);exit;
         return $this->fetch('', [

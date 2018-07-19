@@ -14,8 +14,8 @@ class Lecture extends BaseController
 {
     public function index()
     {
-        $lecture = Loader::model('Lecture')->getNotDelete('admin/lecture/index');
-        $lectureArray = Loader::model('Lecture')->getNotDelete('admin/lecture/index')->toArray();
+        $lecture = Loader::model('Lecture')->getNotDelete();
+        $lectureArray = Loader::model('Lecture')->getNotDelete()->toArray();
 
         return $this->fetch('', [
             'lecture' => $lectureArray['data'],
