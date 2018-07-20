@@ -4,5 +4,6 @@
 
 laydate.render({
     elem: '#time',
-    type: 'datetime'
+    type: 'datetime',
+    range: 'true'
 });

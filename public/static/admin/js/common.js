@@ -8,6 +8,11 @@ $('#submitButton').click(function () {
     $(res).each(function (i) {
         postData[this.name] = this.value;
     });
+
+    if(postData.detail){
+        postData.detail = editor.html();
+    }
+
     $.post(URL.submit_url, postData, function (result) {
         if(result.status === 1){
             dialog.success(result.message, URL.success_url);
