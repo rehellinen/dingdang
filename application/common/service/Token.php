@@ -42,7 +42,7 @@ class Token
         // 爬取微信服务器返回的结果
         $wxResult = $this->getResultFromWx();
         // 根据openID获取用户ID
-        $userID = $this->getIDByOpenID($wxResult, 'Buyer', StatusEnum::NORMAL);
+        $userID = $this->getIDByOpenID($wxResult, 'User', StatusEnum::NORMAL);
         // 生成缓存的键与值
         $cachedKey = self::generateToken();
         $cachedValue = $this->prepareCachedValue($wxResult, $userID);

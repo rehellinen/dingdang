@@ -18,12 +18,14 @@ use \app\common\service\Token as TokenService;
 
 class Token extends Controller
 {
-    public function getToken()
+    public function getToken($code = '')
     {
-        $get = Request::instance()->get();
-        $token = (new TokenService($get['code']))->get();
+        $token = (new TokenService($code))->get();
         throw new SuccessException([
-            'token' => $token
+            'message' => '获取令牌成功',
+            'data' => [
+                'token' => $token
+            ]
         ]);
     }
 

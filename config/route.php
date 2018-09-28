@@ -32,7 +32,7 @@ Route::get('api/:version/lecture/:id', 'api/:version.Lecture/getLectureById');
 Route::post('api/:version/login', 'api/:version.Login/appLogin');
 
 // 用户
-Route::post('api/:version/user', 'api/:version.User/register');
+Route::put('api/:version/user', 'api/:version.User/edit');
 Route::get('api/:version/user', 'api/:version.User/getInfo');
 
 // Token
