@@ -19,12 +19,14 @@ use app\common\model\User as UserModel;
 
 class User extends Controller
 {
-    public function register()
+    public function edit()
     {
-        (new UserValidate())->goCheck('register');
-        $data = (new UserValidate())->getDataByScene('register');
-
-        $res = (new Register)->encryptSave($data);
+        (new UserValidate())->goCheck('edit');
+        $data = (new UserValidate())->getDataByScene('edit');
+        $uid = Token::getUserID();
+        $res = (new UserModel())->where([
+            'id' => $uid
+        ])->save($data);
 
         if($res){
             throw new SuccessException([
@@ -37,7 +39,7 @@ class User extends Controller
 
     public function getInfo()
     {
-        $uid = (new Token())->getVarsByToken('uid');
+        $uid = Token::getUserID();
 
         $res = (new UserModel())->where('id='.$uid)->find();
 

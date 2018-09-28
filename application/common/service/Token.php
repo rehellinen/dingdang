@@ -199,7 +199,7 @@ class Token
      * 获取买家ID
      * @return int 买家ID
      */
-    public static function getBuyerID()
+    public static function getUserID()
     {
         $userID = self::getCurrentTokenVar('userID');
         return $userID;
