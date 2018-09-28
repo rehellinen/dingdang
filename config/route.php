@@ -25,9 +25,8 @@ Route::delete('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/ca
 
 
 // 讲座
-Route::get('api/:version/allLectures', 'api/:version.Lecture/getAllLectures');
-Route::get('api/:version/allActivities', 'api/:version.Lecture/getAllActivities');
-Route::get('api/:version/activity/:id', 'api/:version.Lecture/getLectureById');
+Route::get('api/:version/lecture/all', 'api/:version.Lecture/getAllLectures');
+Route::get('api/:version/lecture/:id', 'api/:version.Lecture/getLectureById');
 
 // 登录
 Route::post('api/:version/login', 'api/:version.Login/appLogin');
@@ -37,4 +36,5 @@ Route::post('api/:version/user', 'api/:version.User/register');
 Route::get('api/:version/user', 'api/:version.User/getInfo');
 
 // Token
+Route::get('api/:version/token', 'api/:version.token/getToken');
 Route::get('api/:version/token/check', 'api/:version.token/checkToken');

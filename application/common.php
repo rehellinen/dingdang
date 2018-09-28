@@ -54,7 +54,7 @@ function getLectureType($status)
  * @param array $data post参数
  * @return mixed
  */
-function curl_http($url, $type, $data=[])
+function curl_http($url, $type = 0, $data=[])
 {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

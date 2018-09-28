@@ -9,7 +9,7 @@ namespace enum;
 
 class ScopeEnum
 {
-    const User = 16;
+    const USER = 16;
 
-    const Super = 32;
+    const SUPER = 32;
 }
