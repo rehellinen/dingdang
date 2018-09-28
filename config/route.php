@@ -1,13 +1,4 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
 
 use think\Route;
 
@@ -32,6 +23,9 @@ Route::get('api/:version/collection/all', 'api/:version.Collection/getAll');
 Route::get('api/:version/collection/:type', 'api/:version.Collection/getByType');
 Route::get('api/:version/collection/validity/:id', 'api/:version.Collection/validateCollection');
 
+// 上传图片相关
+Route::post('api/:version/card', 'api/:version.Image/cardUpload');
 
-// 签到
+// 报名相关
+Route::get('api/:version/attendance/all', 'api/:version.Collection/getAll');
 Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
