@@ -13,15 +13,17 @@ use think\Model;
 
 class Banner extends BaseModel
 {
-    public function getPhotoUrlAttr($value)
+    public function imageId ()
     {
-        $value = str_replace('\\',"/",$value);
-        $value = config('img_url').$value;
-        return $value;
+        return $this->belongsTo('Image', 'image_id', 'id');
     }
 
     public function getBanner()
     {
-        return $this->where('status=1')->order('listorder desc, id desc')->limit(config('setting.banner_max_count'))->select();
+        return $this->where('status=1')
+            ->with('imageId')
+            ->order('listorder desc, id desc')
+            ->limit(config('setting.banner_max_count'))
+            ->select();
     }
 }

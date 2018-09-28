@@ -11,6 +11,14 @@
 
 use think\Route;
 
+// Token
+Route::get('api/:version/token', 'api/:version.token/getToken');
+Route::get('api/:version/token/check', 'api/:version.token/checkToken');
+
+// 用户
+Route::put('api/:version/user', 'api/:version.User/edit');
+Route::get('api/:version/user', 'api/:version.User/getInfo');
+
 // 轮播图
 Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 
@@ -30,11 +38,3 @@ Route::get('api/:version/lecture/:id', 'api/:version.Lecture/getLectureById');
 
 // 登录
 Route::post('api/:version/login', 'api/:version.Login/appLogin');
-
-// 用户
-Route::put('api/:version/user', 'api/:version.User/edit');
-Route::get('api/:version/user', 'api/:version.User/getInfo');
-
-// Token
-Route::get('api/:version/token', 'api/:version.token/getToken');
-Route::get('api/:version/token/check', 'api/:version.token/checkToken');
