@@ -26,14 +26,12 @@ Route::get('api/:version/lecture/:id', 'api/:version.Lecture/getLectureById');
 // 轮播图
 Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 
-// 签到
-Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
-
-// 报名
-Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
-Route::get('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/isEnroll');
+// 收藏相关
+Route::post('api/:version/collection', 'api/:version.Collection/add');
+Route::get('api/:version/collection/all', 'api/:version.Collection/getAll');
 Route::get('api/:version/enroll/:status', 'api/:version.Enroll/getEnroll');
 Route::delete('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/cancelEnroll');
 
-// 登录
-Route::post('api/:version/login', 'api/:version.Login/appLogin');
+
+// 签到
+Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
