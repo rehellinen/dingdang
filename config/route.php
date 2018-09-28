@@ -29,8 +29,7 @@ Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 // 收藏相关
 Route::post('api/:version/collection', 'api/:version.Collection/add');
 Route::get('api/:version/collection/all', 'api/:version.Collection/getAll');
-Route::get('api/:version/enroll/:status', 'api/:version.Enroll/getEnroll');
-Route::delete('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/cancelEnroll');
+Route::get('api/:version/collection/:type', 'api/:version.Collection/getByType');
 
 
 // 签到
