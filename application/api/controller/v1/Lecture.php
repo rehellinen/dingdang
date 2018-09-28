@@ -19,26 +19,12 @@ class Lecture extends Controller
 
         $lectures = (new LectureModel())->getNormalLecture();
 
-        if(!$lectures) {
+        if($lectures->isEmpty()) {
             throw new LectureException();
         }
         throw new SuccessException([
             'message' => '获取全部讲座信息成功',
             'data' => $lectures
-        ]);
-    }
-
-    public function getAllActivities()
-    {
-        $activities = (new LectureModel())->getNormalActivity();
-
-        if(!$activities) {
-            throw new LectureException();
-        }
-
-        throw new SuccessException([
-            'message' => '获取全部活动信息成功',
-            'data' => $activities
         ]);
     }
 
@@ -50,7 +36,7 @@ class Lecture extends Controller
         }
 
         throw new SuccessException([
-            'message' => '获取全部活动信息成功',
+            'message' => '获取讲座信息成功',
             'data' => $lecture
         ]);
     }

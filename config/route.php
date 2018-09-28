@@ -19,6 +19,10 @@ Route::get('api/:version/token/check', 'api/:version.token/checkToken');
 Route::put('api/:version/user', 'api/:version.User/edit');
 Route::get('api/:version/user', 'api/:version.User/getInfo');
 
+// 讲座
+Route::get('api/:version/lecture/all', 'api/:version.Lecture/getAllLectures');
+Route::get('api/:version/lecture/:id', 'api/:version.Lecture/getLectureById');
+
 // 轮播图
 Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 
@@ -30,11 +34,6 @@ Route::post('api/:version/enroll', 'api/:version.Enroll/enroll');
 Route::get('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/isEnroll');
 Route::get('api/:version/enroll/:status', 'api/:version.Enroll/getEnroll');
 Route::delete('api/:version/enroll/:lecture_id/:status', 'api/:version.Enroll/cancelEnroll');
-
-
-// 讲座
-Route::get('api/:version/lecture/all', 'api/:version.Lecture/getAllLectures');
-Route::get('api/:version/lecture/:id', 'api/:version.Lecture/getLectureById');
 
 // 登录
 Route::post('api/:version/login', 'api/:version.Login/appLogin');

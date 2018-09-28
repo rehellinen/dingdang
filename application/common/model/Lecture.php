@@ -11,31 +11,14 @@ namespace app\common\model;
 
 class Lecture extends BaseModel
 {
-    protected $hidden = [
-
-    ];
-
-    public function getPlaceIdAttr($value)
-    {
-        $place = new Place();
-        return $value = $place->find($value);
-    }
-
     public function getNotDelete($path = '')
     {
         $condition['status'] = array('neq', -1);
         return $this->where($condition)->order('id desc')
-                ->paginate([
-                    'list_rows' => 15,
-                    'path' => 'index'
+                    ->paginate([
+                        'list_rows' => 15,
+                        'path' => 'index'
                     ]);
-    }
-
-    public function getPhotoUrlAttr($value)
-    {
-        $value = str_replace('\\',"/",$value);
-        $value = config('img_url').$value;
-        return $value;
     }
 
     public function getLectureCount()
