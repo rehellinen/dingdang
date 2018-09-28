@@ -13,15 +13,15 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '',
+    'hostname'        => 'gz-cdb-jhpbcl86.sql.tencentcdb.com',
     // 数据库名
-    'database'        => '',
+    'database'        => 'lecture',
     // 用户名
-    'username'        => '',
+    'username'        => 'root',
     // 密码
-    'password'        => '',
+    'password'        => 'shun122526',
     // 端口
-    'hostport'        => '',
+    'hostport'        => '63094',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数
