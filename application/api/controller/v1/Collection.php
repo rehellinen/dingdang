@@ -59,4 +59,22 @@ class Collection extends Controller
             ]);
         }
     }
+
+    public function validateCollection($id, $type)
+    {
+        $uid = Token::getUserID();
+        $res = (new CollectionModel())->where([
+            'user_id' => $uid,
+            'status' => StatusEnum::NORMAL,
+            'foreign_id' => $id,
+            'type' => $type
+        ])->find();
+        if (!$res) {
+            throw new CollectionException();
+        } else {
+            throw new SuccessException([
+                'message' => '获取收藏记录成功'
+            ]);
+        }
+    }
 }

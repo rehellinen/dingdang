@@ -11,7 +11,7 @@ namespace app\common\exception;
 
 class CollectionException extends BaseException
 {
-    public $httpCode = 400;
+    public $httpCode = 404;
     public $message = '收藏失败';
     public $status= 80000;
 }

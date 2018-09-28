@@ -10,6 +10,7 @@ namespace app\common\model;
 
 
 use app\common\exception\CollectionException;
+use app\common\exception\SuccessException;
 
 class Collection extends BaseModel
 {
@@ -21,9 +22,11 @@ class Collection extends BaseModel
             'foreign_id' => $id
         ];
         if (!$this->where($data)->find()) {
-            return $this->save($data);
-        } else {
             throw new CollectionException();
+        } else {
+            throw new SuccessException([
+                'message' => '已收藏'
+            ]);
         }
     }
 }
