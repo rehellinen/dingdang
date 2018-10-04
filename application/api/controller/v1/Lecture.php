@@ -17,7 +17,8 @@ class Lecture extends Controller
     public function getAllLectures()
     {
 
-        $lectures = (new LectureModel())->getNormalLecture();
+        $lectures = (new LectureModel())
+            ->getNormalLecture();
 
         if($lectures->isEmpty()) {
             throw new LectureException();

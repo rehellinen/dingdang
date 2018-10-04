@@ -11,6 +11,20 @@ namespace app\common\model;
 
 class Lecture extends BaseModel
 {
+    protected $hidden = [
+        'status', 'listorder'
+    ];
+
+    public function groupImageId ()
+    {
+        return $this->belongsTo('Image', 'group_image_id', 'id');
+    }
+
+    public function mainImageId ()
+    {
+        return $this->belongsTo('Image', 'main_image_id', 'id');
+    }
+
     public function getNotDelete($path = '')
     {
         $condition['status'] = array('neq', -1);
@@ -32,7 +46,11 @@ class Lecture extends BaseModel
         $condition = [
             'status' => 1
         ];
-        return $this->where($condition)->order('time desc, id desc')->select();
+        return $this
+            ->where($condition)
+            ->with(['mainImageId', 'groupImageId'])
+            ->order('time desc, id desc')
+            ->select();
     }
 
     public function getNormalActivity()
@@ -47,6 +65,9 @@ class Lecture extends BaseModel
     {
         $condition['status'] = array('neq', -1);
         $condition['id'] = $id;
-        return $this->where($condition)->find()->toArray();
+        return $this
+            ->where($condition)
+            ->with(['mainImageId', 'groupImageId'])
+            ->find();
     }
 }

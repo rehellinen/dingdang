@@ -18,10 +18,11 @@ class User extends BaseValidate
         ['domain', 'require', '主营不能为空'],
         ['occupation', 'require', '职业不能为空'],
         ['address', 'require', '地址不能为空'],
-        ['focus', 'require', '专注点不能为空']
+        ['focus', 'require', '专注点不能为空'],
+        ['email', 'require', '邮箱不能为空']
     ];
 
     protected $scene = [
-        'edit' => ['telephone', 'name', 'company', 'domain', 'occupation', 'address', 'focus']
+        'edit' => ['telephone', 'name', 'company', 'domain', 'occupation', 'address', 'focus', 'email']
     ];
 }

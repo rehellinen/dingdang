@@ -11,7 +11,6 @@ namespace app\api\controller\v1;
 
 use app\common\exception\SuccessException;
 use think\Controller;
-use app\common\service\Register;
 use app\common\service\Token;
 use app\common\validate\User as UserValidate;
 use think\Exception;
@@ -41,7 +40,12 @@ class User extends Controller
     {
         $uid = Token::getUserID();
 
-        $res = (new UserModel())->where('id='.$uid)->find();
+        $res = (new UserModel())
+            ->where('id='.$uid)
+            ->find()
+            ->hidden([
+                'open_id', 'status'
+            ]);
 
         if($res){
             throw new SuccessException([

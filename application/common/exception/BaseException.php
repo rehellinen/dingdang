@@ -42,7 +42,7 @@ class BaseException extends Exception
             $this->status = $params['status'];
         }
         if(array_key_exists('data', $params)){
-            $this->data['data'] = $params['data'];
+            $this->data = $params['data'];
         }
     }
 }
