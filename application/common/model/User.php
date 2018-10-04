@@ -10,7 +10,7 @@ namespace app\common\model;
 class User extends BaseModel
 {
     protected $hidden = [
-        'password', 'salt'
+        'open_id', 'status'
     ];
 
     public function getUserCount()

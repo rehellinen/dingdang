@@ -27,5 +27,5 @@ Route::get('api/:version/collection/validity/:id/:type', 'api/:version.Collectio
 Route::post('api/:version/card', 'api/:version.Image/cardUpload');
 
 // 报名相关
-Route::get('api/:version/attendance/all', 'api/:version.Collection/getAll');
+Route::get('api/:version/attendance/:id', 'api/:version.Attendance/getAllUser');
 Route::post('api/:version/attendance', 'api/:version.Attendance/sign');

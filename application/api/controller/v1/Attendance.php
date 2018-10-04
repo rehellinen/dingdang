@@ -23,18 +23,44 @@ class Attendance extends Controller
 {
     public function sign()
     {
+        $uid = Token::getUserID();
         $validate = new AttendanceValidate();
         $validate->goCheck('sign');
         $data = $validate->getDataByScene('sign');
+        $data['user_id'] = $uid;
 
         if(!(new AttendanceModel())->save($data)){
             throw new AttendanceException();
         }else{
             throw new SuccessException([
-                '报名成功'
+                'message' => '报名成功'
             ]);
         }
     }
+
+    public function getAllUser($id)
+    {
+        $res = (new AttendanceModel())->where([
+            'lecture_id' => $id
+        ])->select()->toArray();
+
+        if (!$res) {
+            throw new AttendanceException([
+                'message' => '没有人报名',
+                'httpCode' => 404
+            ]);
+        }
+
+        $users = [];
+        foreach ($res as $value) {
+            print_r($value);
+            array_push($users, $value['user_id']);
+        }
+        throw new SuccessException([
+            'message' => '获取参与讲座人员名单成功',
+            'data' => $users
+        ]);
+}
 
 
     public function sign1()
