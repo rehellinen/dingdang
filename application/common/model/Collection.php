@@ -18,10 +18,10 @@ class Collection extends BaseModel
     {
         $data= [
             'user_id' => $uid,
-            'type' => $type,
+            'collection_type' => $type,
             'foreign_id' => $id
         ];
-        if (!$this->where($data)->find()) {
+        if (!$this->insert($data)) {
             throw new CollectionException();
         } else {
             throw new SuccessException([

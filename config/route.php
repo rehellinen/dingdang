@@ -21,7 +21,7 @@ Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 Route::post('api/:version/collection', 'api/:version.Collection/add');
 Route::get('api/:version/collection/all', 'api/:version.Collection/getAll');
 Route::get('api/:version/collection/:type', 'api/:version.Collection/getByType');
-Route::get('api/:version/collection/validity/:id', 'api/:version.Collection/validateCollection');
+Route::get('api/:version/collection/validity/:id/:type', 'api/:version.Collection/validateCollection');
 
 // 上传图片相关
 Route::post('api/:version/card', 'api/:version.Image/cardUpload');

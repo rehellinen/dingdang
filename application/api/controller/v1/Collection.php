@@ -38,7 +38,8 @@ class Collection extends Controller
             throw new CollectionException();
         } else {
             throw new SuccessException([
-                'message' => '获取收藏记录成功'
+                'message' => '获取收藏记录成功',
+                'data' => $res
             ]);
         }
     }
@@ -49,13 +50,14 @@ class Collection extends Controller
         $res = (new CollectionModel())->where([
             'user_id' => $uid,
             'status' => StatusEnum::NORMAL,
-            'type' => $type
+            'collection_type' => $type
         ])->select();
         if (!$res) {
             throw new CollectionException();
         } else {
             throw new SuccessException([
-                'message' => '获取收藏记录成功'
+                'message' => '获取收藏记录成功',
+                'data' => $res
             ]);
         }
     }
@@ -67,13 +69,14 @@ class Collection extends Controller
             'user_id' => $uid,
             'status' => StatusEnum::NORMAL,
             'foreign_id' => $id,
-            'type' => $type
+            'collection_type' => $type
         ])->find();
         if (!$res) {
             throw new CollectionException();
         } else {
             throw new SuccessException([
-                'message' => '获取收藏记录成功'
+                'message' => '获取收藏记录成功',
+                'data' => $res
             ]);
         }
     }

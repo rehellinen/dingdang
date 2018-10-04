@@ -23,6 +23,22 @@ class Attendance extends Controller
 {
     public function sign()
     {
+        $validate = new AttendanceValidate();
+        $validate->goCheck('sign');
+        $data = $validate->getDataByScene('sign');
+
+        if(!(new AttendanceModel())->save($data)){
+            throw new AttendanceException();
+        }else{
+            throw new SuccessException([
+                '报名成功'
+            ]);
+        }
+    }
+
+
+    public function sign1()
+    {
         (new AttendanceValidate())->goCheck('signIn');
         $data = (new AttendanceValidate())->getDataByScene('signIn');
 
