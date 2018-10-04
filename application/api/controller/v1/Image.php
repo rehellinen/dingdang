@@ -6,7 +6,7 @@
  * Time: 0:34
  */
 
-namespace app\api\controller\v2;
+namespace app\api\controller\v1;
 
 use app\common\exception\SuccessException;
 use app\common\model\Card;
