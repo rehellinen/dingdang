@@ -20,16 +20,16 @@ class User extends Controller
 {
     public function edit()
     {
+        $uid = Token::getUserID();
         (new UserValidate())->goCheck('edit');
         $data = (new UserValidate())->getDataByScene('edit');
-        $uid = Token::getUserID();
         $res = (new UserModel())->where([
             'id' => $uid
-        ])->save($data);
+        ])->insert($data);
 
         if($res){
             throw new SuccessException([
-                'message' => '注册成功'
+                'message' => '更改信息成功'
             ]);
         }else{
             throw new Exception();

@@ -20,11 +20,50 @@ class Collection extends Controller
     public function add($id, $type)
     {
         $uid = Token::getUserID();
-        (new CollectionModel())->addOne($id, $uid, $type);
+
+        $cond = [
+            'foreign_id' => $id,
+            'collection_type' => $type,
+            'user_id' => $uid
+        ];
+        $res = (new CollectionModel())->where($cond)->find();
+
+        if (!$res) {
+            (new CollectionModel())->addOne($id, $uid, $type);
+        } else {
+            (new CollectionModel())->save(['status' => StatusEnum::NORMAL], $cond);
+        }
 
         throw new SuccessException([
             'message' => '新增收藏记录成功'
         ]);
+    }
+
+    public function delete($id, $type)
+    {
+        $uid = Token::getUserID();
+        $cond = [
+            'foreign_id' => $id,
+            'collection_type' => $type,
+            'user_id' => $uid
+        ];
+        $res = (new CollectionModel())->where($cond)->find();
+
+        if (!$res) {
+            throw new CollectionException([
+                'message' => '该信息没有被收藏'
+            ]);
+        }
+
+        $res = (new CollectionModel())->save([
+            'status' => StatusEnum::DELETED
+        ], $cond);
+
+        if ($res) {
+            throw new SuccessException([
+                'message' => '删除收藏记录成功'
+            ]);
+        }
     }
 
     public function getAll()

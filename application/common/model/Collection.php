@@ -25,7 +25,7 @@ class Collection extends BaseModel
             throw new CollectionException();
         } else {
             throw new SuccessException([
-                'message' => '已收藏'
+                'message' => '成功收藏'
             ]);
         }
     }

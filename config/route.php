@@ -19,6 +19,7 @@ Route::get('api/:version/banner', 'api/:version.Banner/getBanner');
 
 // 收藏相关
 Route::post('api/:version/collection', 'api/:version.Collection/add');
+Route::delete('api/:version/collection', 'api/:version.Collection/delete');
 Route::get('api/:version/collection/all', 'api/:version.Collection/getAll');
 Route::get('api/:version/collection/:type', 'api/:version.Collection/getByType');
 Route::get('api/:version/collection/validity/:id/:type', 'api/:version.Collection/validateCollection');
