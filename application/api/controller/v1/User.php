@@ -23,9 +23,9 @@ class User extends Controller
         $uid = Token::getUserID();
         (new UserValidate())->goCheck('edit');
         $data = (new UserValidate())->getDataByScene('edit');
-        $res = (new UserModel())->where([
+        $res = (new UserModel())->save($data, [
             'id' => $uid
-        ])->insert($data);
+        ]);
 
         if($res){
             throw new SuccessException([

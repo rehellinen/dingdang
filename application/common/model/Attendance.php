@@ -11,16 +11,9 @@ namespace app\common\model;
 
 class Attendance extends BaseModel
 {
-    public function getUserIdAttr($value)
+    public function lectureId ()
     {
-        $user = new User();
-        return $user->find($value);
-    }
-
-    public function getLectureIdAttr($value)
-    {
-        $lecture = new Lecture();
-        return $lecture->find($value);
+        return $this->belongsTo('Lecture', 'lecture_id', 'id');
     }
 
     public function getNotDelete($path = '')

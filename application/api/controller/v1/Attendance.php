@@ -12,6 +12,7 @@ namespace app\api\controller\v1;
 use app\common\exception\AttendanceException;
 use app\common\exception\LectureException;
 use app\common\exception\SuccessException;
+use enum\StatusEnum;
 use think\Controller;
 use app\common\validate\Attendance as AttendanceValidate;
 use app\common\service\Token;
@@ -21,6 +22,24 @@ use app\common\model\Lecture;
 
 class Attendance extends Controller
 {
+    public function getSelf()
+    {
+        $uid = Token::getUserID();
+        $res = (new AttendanceModel())->where([
+            'status' => StatusEnum::NORMAL,
+            'user_id' => $uid
+        ])->with('lectureId')->select();
+
+        if(!$res){
+            throw new AttendanceException();
+        }else{
+            throw new SuccessException([
+                'message' => '获取报名信息成功',
+                'data' => $res
+            ]);
+        }
+    }
+
     public function sign()
     {
         $uid = Token::getUserID();
