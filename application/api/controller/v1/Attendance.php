@@ -22,6 +22,26 @@ use app\common\model\Lecture;
 
 class Attendance extends Controller
 {
+    public function check($id)
+    {
+        $uid = Token::getUserID();
+        $res = (new AttendanceModel())->where([
+            'status' => StatusEnum::NORMAL,
+            'user_id' => $uid,
+            'lecture_id' => $id
+        ])->find();
+
+        if ($res) {
+            throw new SuccessException([
+                'message' => '已报名'
+            ]);
+        } else {
+            throw new AttendanceException([
+                'message' => '未报名'
+            ]);
+        }
+    }
+
     public function getSelf()
     {
         $uid = Token::getUserID();

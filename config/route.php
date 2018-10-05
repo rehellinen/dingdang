@@ -29,6 +29,7 @@ Route::post('api/:version/card', 'api/:version.Image/cardUpload');
 
 // 报名相关
 Route::get('api/:version/attendance/:id', 'api/:version.Attendance/getAllUser');
+Route::get('api/:version/attendance/validity/:id', 'api/:version.Attendance/check');
 Route::post('api/:version/attendance', 'api/:version.Attendance/sign');
 Route::get('api/:version/attendance', 'api/:version.Attendance/getSelf');
 
