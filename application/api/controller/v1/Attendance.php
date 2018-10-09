@@ -48,7 +48,7 @@ class Attendance extends Controller
         $res = (new AttendanceModel())->where([
             'status' => StatusEnum::NORMAL,
             'user_id' => $uid
-        ])->with('lectureId')->select();
+        ])->with(['lectureId', 'lectureId.mainImageId'])->select();
 
         if(!$res){
             throw new AttendanceException();
@@ -94,7 +94,7 @@ class Attendance extends Controller
         foreach ($res as $value) {
             array_push($users, $value['user_id']);
         }
-        print_r($users);exit;
+
         throw new SuccessException([
             'message' => '获取参与讲座人员名单成功',
             'data' => $users

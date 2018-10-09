@@ -125,7 +125,7 @@ class Token
     protected function saveToCache($cachedKey, $cachedValue)
     {
         $cachedValue = json_encode($cachedValue);
-        $expire_in = config('admin.token_expire_in');
+        $expire_in = config('setting.token_expire_in');
 
         $cache = cache($cachedKey, $cachedValue, $expire_in);
         if(!$cache){
