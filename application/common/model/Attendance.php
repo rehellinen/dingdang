@@ -16,6 +16,11 @@ class Attendance extends BaseModel
         return $this->belongsTo('Lecture', 'lecture_id', 'id');
     }
 
+    public function userId ()
+    {
+        return $this->belongsTo('User', 'user_id', 'id');
+    }
+
     public function getNotDelete($path = '')
     {
         $condition['status'] = array('neq', -1);
