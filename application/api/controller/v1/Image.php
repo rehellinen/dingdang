@@ -12,6 +12,7 @@ use app\common\exception\SuccessException;
 use app\common\model\Card;
 use app\common\model\Image as ImageModel;
 use app\common\service\Token;
+use enum\StatusEnum;
 use think\Controller;
 use think\Request;
 
@@ -40,5 +41,19 @@ class Image extends Controller
                 'data' => ['image_id' => $imageID]
             ]);
         }
+    }
+
+    public function getSelf()
+    {
+        $uid = Token::getUserID();
+        $data = (new Card())->where([
+            'status' => StatusEnum::NORMAL,
+            'user_id' => $uid
+        ])->with('imageId')->select();
+
+        throw new SuccessException([
+            'message' => '获取名片成功',
+            'data' => $data
+        ]);
     }
 }

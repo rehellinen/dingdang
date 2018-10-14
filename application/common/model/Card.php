@@ -13,5 +13,8 @@ use think\Model;
 
 class Card extends Model
 {
-
+    public function imageId ()
+    {
+        return $this->belongsTo('Image', 'image_id', 'id');
+    }
 }
