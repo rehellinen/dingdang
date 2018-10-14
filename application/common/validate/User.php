@@ -19,7 +19,8 @@ class User extends BaseValidate
         ['occupation', 'require', '职业不能为空'],
         ['address', 'require', '地址不能为空'],
         ['focus', 'require', '专注点不能为空'],
-        ['email', 'require', '邮箱不能为空']
+        ['email', 'require', '邮箱不能为空'],
+        ['avatar_url', 'require', '用户头像url不能为空']
     ];
 
     protected $scene = [
