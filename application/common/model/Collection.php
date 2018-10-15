@@ -14,6 +14,21 @@ use app\common\exception\SuccessException;
 
 class Collection extends BaseModel
 {
+    public function userId ()
+    {
+        return $this->belongsTo('User', 'foreign_id', 'id');
+    }
+
+    public function lectureId ()
+    {
+        return $this->belongsTo('Lecture', 'foreign_id', 'id');
+    }
+
+    public function cardId ()
+    {
+        return $this->belongsTo('Card', 'foreign_id', 'id');
+    }
+
     public function addOne($id, $uid, $type)
     {
         $data= [

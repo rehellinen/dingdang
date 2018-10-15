@@ -86,11 +86,19 @@ class Collection extends Controller
     public function getByType($type)
     {
         $uid = Token::getUserID();
+        $relation = 'lectureId';
+        if ($type === 1) {
+            $relation = 'userId';
+        } elseif ($type === 2) {
+            $relation = 'cardId';
+        }
+
+
         $res = (new CollectionModel())->where([
             'user_id' => $uid,
             'status' => StatusEnum::NORMAL,
             'collection_type' => $type
-        ])->select();
+        ])->with($relation)->select();
         if (!$res) {
             throw new CollectionException();
         } else {

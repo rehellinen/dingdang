@@ -9,6 +9,7 @@ Route::get('api/:version/token/check', 'api/:version.token/checkToken');
 // 用户
 Route::put('api/:version/user', 'api/:version.User/edit');
 Route::get('api/:version/user', 'api/:version.User/getInfo');
+Route::get('api/:version/user/:id', 'api/:version.User/getInfoById');
 
 // 讲座
 Route::get('api/:version/lecture/all', 'api/:version.Lecture/getAllLectures');

@@ -18,6 +18,22 @@ use app\common\model\User as UserModel;
 
 class User extends Controller
 {
+    public function getInfoById($id)
+    {
+        $res = (new UserModel())
+            ->where('id='.$id)
+            ->find();
+
+        if($res){
+            throw new SuccessException([
+                'message' => '获取成功',
+                'data' => $res
+            ]);
+        }else{
+            throw new Exception();
+        }
+    }
+
     public function edit()
     {
         $uid = Token::getUserID();
