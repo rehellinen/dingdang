@@ -15,6 +15,7 @@ use app\common\service\Token;
 use app\common\validate\User as UserValidate;
 use think\Exception;
 use app\common\model\User as UserModel;
+use think\Request;
 
 class User extends Controller
 {
@@ -37,8 +38,8 @@ class User extends Controller
     public function edit()
     {
         $uid = Token::getUserID();
-        (new UserValidate())->goCheck('edit');
-        $data = (new UserValidate())->getDataByScene('edit');
+
+        $data = Request::instance()->post();
         $res = (new UserModel())->save($data, [
             'id' => $uid
         ]);

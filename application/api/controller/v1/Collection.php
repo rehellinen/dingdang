@@ -87,9 +87,9 @@ class Collection extends Controller
     {
         $uid = Token::getUserID();
         $relation = 'lectureId';
-        if ($type === 1) {
+        if ($type == 1) {
             $relation = 'userId';
-        } elseif ($type === 2) {
+        } elseif ($type == 2) {
             $relation = 'cardId';
         }
 
